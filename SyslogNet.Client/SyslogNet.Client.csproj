@@ -49,7 +49,6 @@
     <Compile Include="Text\ASCIIEncoding.cs" />
     <Compile Include="Facility.cs" />
     <Compile Include="Serialization\ISyslogMessageSerializer.cs" />
-    <Compile Include="Serialization\SyslogMessageSerializerExtensions.cs" />
     <Compile Include="Severity.cs" />
     <Compile Include="StructuredDataElement.cs" />
     <Compile Include="Serialization\SyslogMessageSerializerBase.cs" />

@@ -2,6 +2,7 @@ using Sockets.Plugin;
 using SyslogNet.Client.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -38,7 +39,7 @@ namespace SyslogNet.Client.Transport
 
         public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer)
         {
-            var datagramBytes = serializer.Serialize(message);
+            var datagramBytes = Serialize(message, serializer);
             await udpClient.SendAsync(datagramBytes);
         }
 
@@ -65,6 +66,16 @@ namespace SyslogNet.Client.Transport
         public void Dispose()
         {
             udpClient.Dispose();
+        }
+
+        private static byte[] Serialize(SyslogMessage message, ISyslogMessageSerializer serializer)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                serializer.Serialize(message, memoryStream);
+                memoryStream.Flush();
+                return memoryStream.ToArray();
+            }
         }
     }
 }
