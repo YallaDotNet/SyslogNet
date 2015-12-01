@@ -32,6 +32,19 @@ namespace SyslogNet.Client.Transport
             await SendAsync(messages, serializer, CancellationToken.None);
         }
 
+        public virtual async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
+        {
+            await DoSendAsync(message, serializer, cancellationToken);
+        }
+
+        public virtual async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
+        {
+            foreach (SyslogMessage message in messages)
+            {
+                await DoSendAsync(message, serializer, cancellationToken);
+            }
+        }
+
         protected byte[] Serialize(SyslogMessage message, ISyslogMessageSerializer serializer)
         {
             using (var memoryStream = new MemoryStream())
@@ -47,10 +60,8 @@ namespace SyslogNet.Client.Transport
             serializer.Serialize(message, stream);
         }
 
-        public abstract Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken);
-
-        public abstract Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken);
-
         protected abstract Task ConnectAsync(string hostname, int port);
+
+        protected abstract Task DoSendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken);
     }
 }

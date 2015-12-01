@@ -55,16 +55,13 @@ namespace SyslogNet.Client.Transport
 
         public override async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
-            await SendAsync(message, serializer, true, cancellationToken);
+            await base.SendAsync(message, serializer, cancellationToken);
+            await TransportStream.FlushAsync(cancellationToken);
         }
 
         public override async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
-            foreach (SyslogMessage message in messages)
-            {
-                await SendAsync(message, serializer, false, cancellationToken);
-            }
-
+            await base.SendAsync(messages, serializer, cancellationToken);
             await TransportStream.FlushAsync(cancellationToken);
         }
 
@@ -83,7 +80,7 @@ namespace SyslogNet.Client.Transport
             stream.WriteByte(Trailer); // LF
         }
 
-        private async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, bool flush, CancellationToken cancellationToken)
+        protected override async Task DoSendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             if (TransportStream == null)
             {
@@ -98,9 +95,6 @@ namespace SyslogNet.Client.Transport
             }
 
             await TransportStream.WriteAsync(bytes, 0, bytes.Length, cancellationToken).ConfigureAwait(false);
-
-            if (flush)
-                await TransportStream.FlushAsync(cancellationToken);
         }
 
         private static byte[] PrependLength(byte[] datagramBytes)
