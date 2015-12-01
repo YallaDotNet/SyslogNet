@@ -1,10 +1,10 @@
-using System;
-using System.Threading;
 using CommandLine;
-using SyslogNet;
 using SyslogNet.Client;
 using SyslogNet.Client.Serialization;
 using SyslogNet.Client.Transport;
+using System;
+using System.Text;
+using System.Threading;
 
 namespace TesterApp
 {
@@ -53,10 +53,10 @@ namespace TesterApp
 					// string exceptionMessage = CreateExceptionMessageLevel1();
 
 					ISyslogMessageSerializer serializer = options.SyslogVersion == "5424"
-						? (ISyslogMessageSerializer)new SyslogRfc5424MessageSerializer()
+						? (ISyslogMessageSerializer)SyslogRfc5424MessageSerializer.Default
 						: options.SyslogVersion == "3164"
-							? (ISyslogMessageSerializer)new SyslogRfc3164MessageSerializer()
-							: (ISyslogMessageSerializer)new SyslogLocalMessageSerializer();
+                            ? (ISyslogMessageSerializer)SyslogRfc3164MessageSerializer.Default
+							: (ISyslogMessageSerializer)SyslogLocalMessageSerializer.Default;
 
 					ISyslogMessageSender sender = options.NetworkProtocol == "tcp"
 						? (ISyslogMessageSender)new SyslogEncryptedTcpSender(options.SyslogServerHostname, options.SyslogServerPort)

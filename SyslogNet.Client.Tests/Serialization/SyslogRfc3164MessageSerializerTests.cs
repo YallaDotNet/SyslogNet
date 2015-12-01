@@ -2,6 +2,7 @@ using System;
 using SyslogNet.Client.Serialization;
 using Xunit;
 using Xunit.Extensions;
+using System.Text;
 
 namespace SyslogNet.Client.Tests.Serialization
 {
@@ -11,7 +12,7 @@ namespace SyslogNet.Client.Tests.Serialization
 
 		public SyslogRfc3164MessageSerializerTests()
 		{
-			sut = new SyslogRfc3164MessageSerializer();
+            sut = SyslogRfc3164MessageSerializer.Default;
 		}
 
 		[Theory]

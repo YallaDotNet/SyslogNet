@@ -41,29 +41,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommunicationsException.cs" />
-    <Compile Include="Facility.cs" />
-    <Compile Include="Serialization\ISyslogMessageSerializer.cs" />
-    <Compile Include="Serialization\SyslogMessageSerializerExtensions.cs" />
-    <Compile Include="Severity.cs" />
-    <Compile Include="StructuredDataElement.cs" />
-    <Compile Include="Serialization\SyslogMessageSerializerBase.cs" />
-    <Compile Include="Serialization\SyslogRfc3164MessageSerializer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="SyslogMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\SyslogRfc5424MessageSerializer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Serialization\SyslogLocalMessageSerializer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Transport\ISyslogMessageSender.cs" />
+    <Compile Include="Transport\SyslogLocalSender.cs" />
     <Compile Include="Transport\SyslogTcpSender.cs" />
     <Compile Include="Transport\SyslogEncryptedTcpSender.cs" />
-    <Compile Include="Transport\SyslogTransportException.cs" />
     <Compile Include="Transport\SyslogUdpSender.cs" />
-    <Compile Include="Transport\SyslogLocalSender.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Serialization.Net40\Serialization.Net40.csproj">
+      <Project>{0c040e79-71ea-4ee3-9294-59c1f5beb937}</Project>
+      <Name>Serialization.Net40</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

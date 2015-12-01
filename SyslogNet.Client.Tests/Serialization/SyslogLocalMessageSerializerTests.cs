@@ -11,7 +11,7 @@ namespace SyslogNet.Client.Tests.Serialization
 
 		public SyslogLocalMessageSerializerTests()
 		{
-			sut = new SyslogLocalMessageSerializer();
+            sut = SyslogLocalMessageSerializer.Default;
 		}
 
 		[Fact]
