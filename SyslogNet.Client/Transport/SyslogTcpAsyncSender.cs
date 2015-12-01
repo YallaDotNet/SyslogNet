@@ -97,16 +97,14 @@ namespace SyslogNet.Client.Transport
                 throw new IOException("No transport stream exists");
             }
 
-            var datagramBytes = Serialize(message, serializer);
+            var bytes = Serialize(message, serializer);
 
             if (messageTransfer.Equals(MessageTransfer.OctetCounting))
             {
-                var messageLengthString = datagramBytes.Length.ToString();
-                var messageLengthBytes = Serialize(messageLengthString);
-                await TransportStream.WriteAsync(messageLengthBytes, 0, messageLengthBytes.Length, cancellationToken).ConfigureAwait(false);
+                bytes = PrependLength(bytes);
             }
 
-            await TransportStream.WriteAsync(datagramBytes, 0, datagramBytes.Length, cancellationToken);
+            await TransportStream.WriteAsync(bytes, 0, bytes.Length, cancellationToken).ConfigureAwait(false);
 
             if (flush)
                 await TransportStream.FlushAsync(cancellationToken);
@@ -123,12 +121,15 @@ namespace SyslogNet.Client.Transport
             }
         }
 
-        private static byte[] Serialize(string s)
+        private static byte[] PrependLength(byte[] datagramBytes)
         {
-            var buffer = new byte[Encoding.ASCII.GetByteCount(s) + 1];
-            Encoding.ASCII.GetBytes(s, 0, s.Length, buffer, 0);
-            buffer[buffer.Length - 1] = Delimiter; // Space
-            return buffer;
+            var messageLength = datagramBytes.Length.ToString();
+            var messageLengthByteCount = Encoding.ASCII.GetByteCount(messageLength);
+            var bytes = new byte[messageLengthByteCount + datagramBytes.Length + 1];
+            Encoding.ASCII.GetBytes(messageLength, 0, messageLength.Length, bytes, 0);
+            bytes[messageLengthByteCount] = Delimiter; // Space
+            datagramBytes.CopyTo(bytes, messageLengthByteCount + 1);
+            return bytes;
         }
 
         private Stream TransportStream
