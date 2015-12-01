@@ -12,6 +12,11 @@ namespace SyslogNet.Client.Serialization
 
 		private readonly char[] asciiCharsBuffer = new char[255];
 
+        public SyslogRfc5424MessageSerializer(Encoding encoding)
+            : base(encoding)
+        {
+        }
+
 		public void Serialize(SyslogMessage message, Stream stream)
 		{
 			var priorityValue = CalculatePriorityValue(message.Facility, message.Severity);
@@ -30,7 +35,7 @@ namespace SyslogNet.Client.Serialization
 			messageBuilder.Append(" ").Append(message.ProcId.FormatSyslogAsciiField(NilValue, 128, asciiCharsBuffer));
 			messageBuilder.Append(" ").Append(message.MsgId.FormatSyslogAsciiField(NilValue, 32, asciiCharsBuffer));
 
-			writeStream(stream, Encoding.ASCII, messageBuilder.ToString());
+            writeStream(stream, Encoding, messageBuilder.ToString());
 
 			// Structured data
 			foreach(StructuredDataElement sdElement in message.StructuredDataElements)
@@ -40,7 +45,7 @@ namespace SyslogNet.Client.Serialization
 					.Append("[")
 					.Append(sdElement.SdId.FormatSyslogSdnameField(asciiCharsBuffer));
 
-				writeStream(stream, Encoding.ASCII, messageBuilder.ToString());
+                writeStream(stream, Encoding, messageBuilder.ToString());
 
 				foreach(System.Collections.Generic.KeyValuePair<string, string> sdParam in sdElement.Parameters)
 				{
@@ -60,7 +65,7 @@ namespace SyslogNet.Client.Serialization
 						)
 						.Append("\"");
 
-					writeStream(stream, Encoding.UTF8, messageBuilder.ToString());
+                    writeStream(stream, Encoding, messageBuilder.ToString());
 				}
 
 				// ]
@@ -72,12 +77,12 @@ namespace SyslogNet.Client.Serialization
 				// Space
 				stream.WriteByte(32);
 
-				stream.Write(Encoding.UTF8.GetPreamble(), 0, Encoding.UTF8.GetPreamble().Length);
-				writeStream(stream, Encoding.UTF8, message.Message);
-			}
+                stream.Write(Encoding.UTF8.GetPreamble(), 0, Encoding.UTF8.GetPreamble().Length);
+                writeStream(stream, Encoding.UTF8, message.Message);
+            }
 		}
 
-		private void writeStream(Stream stream, Encoding encoding, String data)
+        private void writeStream(Stream stream, Encoding encoding, String data)
 		{
 			byte[] streamBytes = encoding.GetBytes(data);
 			stream.Write(streamBytes, 0, streamBytes.Length);

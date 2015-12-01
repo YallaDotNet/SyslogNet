@@ -6,6 +6,11 @@ namespace SyslogNet.Client.Serialization
 {
 	public class SyslogRfc3164MessageSerializer : SyslogMessageSerializerBase, ISyslogMessageSerializer
 	{
+        public SyslogRfc3164MessageSerializer(Encoding encoding)
+            : base(encoding)
+        {
+        }
+
 		public void Serialize(SyslogMessage message, Stream stream)
 		{
 			var priorityValue = CalculatePriorityValue(message.Facility, message.Severity);
@@ -25,7 +30,7 @@ namespace SyslogNet.Client.Serialization
 			headerBuilder.Append(message.AppName.IfNotNullOrWhitespace(x => x.EnsureMaxLength(32) + ":"));
 			headerBuilder.Append(message.Message ?? "");
 
-			byte[] asciiBytes = Encoding.ASCII.GetBytes(headerBuilder.ToString());
+			byte[] asciiBytes = Encoding.GetBytes(headerBuilder.ToString());
 			stream.Write(asciiBytes, 0, asciiBytes.Length);
 		}
 	}
