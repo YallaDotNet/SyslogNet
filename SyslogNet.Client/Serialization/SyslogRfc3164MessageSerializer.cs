@@ -1,16 +1,11 @@
-﻿using System;
+﻿using SyslogNet.Client.Text;
+using System;
 using System.IO;
-using System.Text;
 
 namespace SyslogNet.Client.Serialization
 {
 	public class SyslogRfc3164MessageSerializer : SyslogMessageSerializerBase, ISyslogMessageSerializer
 	{
-        public SyslogRfc3164MessageSerializer(Encoding encoding)
-            : base(encoding)
-        {
-        }
-
 		public void Serialize(SyslogMessage message, Stream stream)
 		{
 			var priorityValue = CalculatePriorityValue(message.Facility, message.Severity);
@@ -23,14 +18,14 @@ namespace SyslogNet.Client.Serialization
 				timestamp = String.Concat(dt.ToString("MMM "), day, dt.ToString(" HH:mm:ss"));
 			}
 
-			var headerBuilder = new StringBuilder();
+			var headerBuilder = new System.Text.StringBuilder();
 			headerBuilder.Append("<").Append(priorityValue).Append(">");
 			headerBuilder.Append(timestamp).Append(" ");
 			headerBuilder.Append(message.HostName).Append(" ");
 			headerBuilder.Append(message.AppName.IfNotNullOrWhitespace(x => x.EnsureMaxLength(32) + ":"));
 			headerBuilder.Append(message.Message ?? "");
 
-			byte[] asciiBytes = Encoding.GetBytes(headerBuilder.ToString());
+			byte[] asciiBytes = Encoding.ASCII.GetBytes(headerBuilder.ToString());
 			stream.Write(asciiBytes, 0, asciiBytes.Length);
 		}
 	}

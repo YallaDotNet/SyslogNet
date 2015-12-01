@@ -59,14 +59,16 @@ namespace TesterApp
                     // string exceptionMessage = CreateExceptionMessageLevel1();
 
                     ISyslogMessageSerializer serializer = options.SyslogVersion == "5424"
-                        ? (ISyslogMessageSerializer)new SyslogRfc5424MessageSerializer(Encoding.ASCII)
+                        ? (ISyslogMessageSerializer)new SyslogRfc5424MessageSerializer()
                         : options.SyslogVersion == "3164"
-                            ? (ISyslogMessageSerializer)new SyslogRfc3164MessageSerializer(Encoding.ASCII)
+                            ? (ISyslogMessageSerializer)new SyslogRfc3164MessageSerializer()
                             : (ISyslogMessageSerializer)new SyslogLocalMessageSerializer();
 
                     ISyslogMessageAsyncSender sender = options.NetworkProtocol == "tcp"
                         ? (ISyslogMessageAsyncSender)new SyslogTcpAsyncSender(options.SyslogServerHostname, options.SyslogServerPort, MessageTransfer.NonTransparentFraming, true)
                         : (ISyslogMessageAsyncSender)new SyslogUdpAsyncSender(options.SyslogServerHostname, options.SyslogServerPort);
+
+                    await sender.ConnectAsync();
 
                     SyslogMessage msg1 = CreateSyslogMessage(options);
                     await sender.SendAsync(msg1, serializer);
@@ -77,6 +79,8 @@ namespace TesterApp
                     SyslogMessage msg2 = CreateSyslogMessage(options);
                     await sender.SendAsync(msg2, serializer);
                     Console.WriteLine("Sent message 2");
+
+                    await sender.DisconnectAsync();
                 }
             }
             catch (Exception ex)

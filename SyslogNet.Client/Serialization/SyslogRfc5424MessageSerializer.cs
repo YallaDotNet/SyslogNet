@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SyslogNet.Client.Text;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace SyslogNet.Client.Serialization
 {
@@ -12,11 +12,6 @@ namespace SyslogNet.Client.Serialization
 
 		private readonly char[] asciiCharsBuffer = new char[255];
 
-        public SyslogRfc5424MessageSerializer(Encoding encoding)
-            : base(encoding)
-        {
-        }
-
 		public void Serialize(SyslogMessage message, Stream stream)
 		{
 			var priorityValue = CalculatePriorityValue(message.Facility, message.Severity);
@@ -26,7 +21,7 @@ namespace SyslogNet.Client.Serialization
 				? message.DateTimeOffset.Value.ToString("yyyy-MM-ddTHH:mm:ss.ffffffK")
 				: null;
 
-			var messageBuilder = new StringBuilder();
+			var messageBuilder = new System.Text.StringBuilder();
 			messageBuilder.Append("<").Append(priorityValue).Append(">");
 			messageBuilder.Append(message.Version);
 			messageBuilder.Append(" ").Append(timestamp.FormatSyslogField(NilValue));
@@ -35,7 +30,7 @@ namespace SyslogNet.Client.Serialization
 			messageBuilder.Append(" ").Append(message.ProcId.FormatSyslogAsciiField(NilValue, 128, asciiCharsBuffer));
 			messageBuilder.Append(" ").Append(message.MsgId.FormatSyslogAsciiField(NilValue, 32, asciiCharsBuffer));
 
-            writeStream(stream, Encoding, messageBuilder.ToString());
+            writeStream(stream, Encoding.ASCII, messageBuilder.ToString());
 
 			// Structured data
 			foreach(StructuredDataElement sdElement in message.StructuredDataElements)
@@ -45,7 +40,7 @@ namespace SyslogNet.Client.Serialization
 					.Append("[")
 					.Append(sdElement.SdId.FormatSyslogSdnameField(asciiCharsBuffer));
 
-                writeStream(stream, Encoding, messageBuilder.ToString());
+                writeStream(stream, Encoding.ASCII, messageBuilder.ToString());
 
 				foreach(System.Collections.Generic.KeyValuePair<string, string> sdParam in sdElement.Parameters)
 				{
@@ -65,7 +60,7 @@ namespace SyslogNet.Client.Serialization
 						)
 						.Append("\"");
 
-                    writeStream(stream, Encoding, messageBuilder.ToString());
+                    writeStream(stream, Encoding.ASCII, messageBuilder.ToString());
 				}
 
 				// ]
@@ -82,7 +77,7 @@ namespace SyslogNet.Client.Serialization
             }
 		}
 
-        private void writeStream(Stream stream, Encoding encoding, String data)
+        private void writeStream(Stream stream, System.Text.Encoding encoding, String data)
 		{
 			byte[] streamBytes = encoding.GetBytes(data);
 			stream.Write(streamBytes, 0, streamBytes.Length);

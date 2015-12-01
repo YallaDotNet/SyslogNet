@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Sockets.Plugin, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -44,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Text\ASCIIEncoding.cs" />
     <Compile Include="Facility.cs" />
     <Compile Include="Serialization\ISyslogMessageSerializer.cs" />
     <Compile Include="Serialization\SyslogMessageSerializerExtensions.cs" />
@@ -61,6 +64,21 @@
     <Compile Include="Serialization\SyslogLocalMessageSerializer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Text\DecoderExceptionFallback.cs" />
+    <Compile Include="Text\DecoderExceptionFallbackBuffer.cs" />
+    <Compile Include="Text\DecoderFallback.cs" />
+    <Compile Include="Text\DecoderFallbackBuffer.cs" />
+    <Compile Include="Text\DecoderFallbackException.cs" />
+    <Compile Include="Text\DecoderReplacementFallback.cs" />
+    <Compile Include="Text\DecoderReplacementFallbackBuffer.cs" />
+    <Compile Include="Text\EncoderExceptionFallback.cs" />
+    <Compile Include="Text\EncoderExceptionFallbackBuffer.cs" />
+    <Compile Include="Text\EncoderFallback.cs" />
+    <Compile Include="Text\EncoderFallbackBuffer.cs" />
+    <Compile Include="Text\EncoderFallbackException.cs" />
+    <Compile Include="Text\EncoderReplacementFallback.cs" />
+    <Compile Include="Text\EncoderReplacementFallbackBuffer.cs" />
+    <Compile Include="Text\Encoding.cs" />
     <Compile Include="Transport\ISyslogMessageAsyncSender.cs" />
     <Compile Include="Transport\SyslogTcpAsyncSender.cs" />
     <Compile Include="Transport\SyslogTransportException.cs" />
