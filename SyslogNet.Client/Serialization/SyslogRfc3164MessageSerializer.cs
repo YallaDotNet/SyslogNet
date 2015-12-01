@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SyslogNet.Client.Text;
+using System;
 using System.IO;
-using System.Text;
 
 namespace SyslogNet.Client.Serialization
 {
@@ -18,7 +18,7 @@ namespace SyslogNet.Client.Serialization
 				timestamp = String.Concat(dt.ToString("MMM "), day, dt.ToString(" HH:mm:ss"));
 			}
 
-			var headerBuilder = new StringBuilder();
+			var headerBuilder = new System.Text.StringBuilder();
 			headerBuilder.Append("<").Append(priorityValue).Append(">");
 			headerBuilder.Append(timestamp).Append(" ");
 			headerBuilder.Append(message.HostName).Append(" ");
