@@ -32,27 +32,39 @@ namespace SyslogNet.Client.Transport
 
         public Task ReconnectAsync()
         {
-            /* UDP is connectionless */
+            // UDP is connectionless
             return new TaskCompletionSource<object>().Task;
         }
 
-        public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken = default(CancellationToken))
-		{
-			var datagramBytes = serializer.Serialize(message);
+        public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer)
+        {
+            var datagramBytes = serializer.Serialize(message);
             await udpClient.SendAsync(datagramBytes);
+        }
+
+        public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
+		{
+            // UdpSocketClient is cancellationless
+            await SendAsync(message, serializer);
 		}
 
-        public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer)
+        {
+            foreach (SyslogMessage message in messages)
+            {
+                await SendAsync(message, serializer);
+            }
+        }
+
+        public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
 		{
-			foreach (SyslogMessage message in messages)
-			{
-				await SendAsync(message, serializer, cancellationToken);
-			}
-		}
+            // UdpSocketClient is cancellationless
+            await SendAsync(messages, serializer);
+        }
 
 		public void Dispose()
 		{
 			udpClient.Dispose();
 		}
-	}
+    }
 }

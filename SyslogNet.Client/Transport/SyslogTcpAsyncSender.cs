@@ -60,12 +60,22 @@ namespace SyslogNet.Client.Transport
             await ConnectAsync();
         }
 
-        public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer)
+        {
+            await SendAsync(message, serializer, true, CancellationToken.None);
+        }
+
+        public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
 		{
 			await SendAsync(message, serializer, true, cancellationToken);
 		}
 
-        public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer)
+        {
+            await SendAsync(messages, serializer, CancellationToken.None);
+        }
+
+        public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
 		{
 			foreach (SyslogMessage message in messages)
 			{
@@ -84,7 +94,7 @@ namespace SyslogNet.Client.Transport
 			}
 		}
 
-        private async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, bool flush, CancellationToken cancellationToken = default(CancellationToken))
+        private async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, bool flush, CancellationToken cancellationToken)
         {
             if (TransportStream == null)
             {
