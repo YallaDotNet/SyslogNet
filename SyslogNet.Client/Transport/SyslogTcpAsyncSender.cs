@@ -15,28 +15,23 @@ namespace SyslogNet.Client.Transport
         NonTransparentFraming = 1
     }
 
-    public sealed class SyslogTcpAsyncSender : ISyslogMessageAsyncSender, IDisposable
+    public class SyslogTcpAsyncSenderBase : ISyslogMessageAsyncSender, IDisposable
     {
         private const byte Delimiter = 32; // Space
         private const byte Trailer = 10; // LF
 
-        private readonly String hostname;
+        private readonly string hostname;
         private readonly int port;
-        private readonly MessageTransfer messageTransfer;
         private readonly bool secure;
+        private readonly MessageTransfer messageTransfer;
 
         private TcpSocketClient tcpClient = null;
 
-        public SyslogTcpAsyncSender(string hostname, int port, MessageTransfer messageTransfer = MessageTransfer.OctetCounting, bool secure = false)
+        protected SyslogTcpAsyncSenderBase(string hostname, int port, bool secure, MessageTransfer messageTransfer)
         {
             this.hostname = hostname;
             this.port = port;
             this.secure = secure;
-
-            if (!messageTransfer.Equals(MessageTransfer.OctetCounting) && secure)
-            {
-                throw new SyslogTransportException("Non-Transparent-Framing can not be used with TLS transport");
-            }
             this.messageTransfer = messageTransfer;
         }
 
@@ -144,6 +139,22 @@ namespace SyslogNet.Client.Transport
                     ? tcpClient.WriteStream
                     : null;
             }
+        }
+    }
+
+    public sealed class SyslogTcpAsyncSender : SyslogTcpAsyncSenderBase
+    {
+        public SyslogTcpAsyncSender(string hostname, int port, MessageTransfer messageTransfer = MessageTransfer.OctetCounting)
+            : base(hostname, port, false, messageTransfer)
+        {
+        }
+    }
+
+    public sealed class SyslogSecureTcpAsyncSender : SyslogTcpAsyncSenderBase
+    {
+        public SyslogSecureTcpAsyncSender(string hostname, int port)
+            : base(hostname, port, true, MessageTransfer.NonTransparentFraming)
+        {
         }
     }
 }
