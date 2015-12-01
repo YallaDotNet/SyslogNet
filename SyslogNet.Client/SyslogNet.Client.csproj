@@ -42,19 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommunicationsException.cs" />
-    <Compile Include="Serialization\ISyslogMessageSerializer.cs" />
-    <Compile Include="Serialization\SyslogMessageSerializerExtensions.cs" />
-    <Compile Include="Serialization\SyslogMessageSerializerBase.cs" />
-    <Compile Include="Serialization\SyslogRfc3164MessageSerializer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\SyslogRfc5424MessageSerializer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Serialization\SyslogLocalMessageSerializer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Transport\ISyslogMessageSender.cs" />
     <Compile Include="Transport\SyslogLocalSender.cs" />
     <Compile Include="Transport\SyslogTcpSender.cs" />
@@ -66,6 +54,10 @@
     <ProjectReference Include="..\SyslogNet.Client.Core\SyslogNet.Client.Core.csproj">
       <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
       <Name>SyslogNet.Client.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SyslogNet.Client.Serialization\SyslogNet.Client.Serialization.csproj">
+      <Project>{b9434aa7-eac0-4f58-9c81-b0f24778457b}</Project>
+      <Name>SyslogNet.Client.Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="..\SyslogNet.Client.Text\SyslogNet.Client.Text.csproj">
       <Project>{0ef08440-f88f-4325-a030-14f3aabc076f}</Project>

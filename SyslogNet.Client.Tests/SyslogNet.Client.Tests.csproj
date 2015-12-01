@@ -62,6 +62,10 @@
       <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
       <Name>SyslogNet.Client.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SyslogNet.Client.Serialization\SyslogNet.Client.Serialization.csproj">
+      <Project>{b9434aa7-eac0-4f58-9c81-b0f24778457b}</Project>
+      <Name>SyslogNet.Client.Serialization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SyslogNet.Client\SyslogNet.Client.csproj">
       <Project>{F94B72CD-DA67-436E-9244-FA79DF140E0A}</Project>
       <Name>SyslogNet.Client</Name>
