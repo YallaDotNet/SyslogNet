@@ -77,7 +77,7 @@ namespace SyslogNet.Client.Serialization
             }
         }
 
-        private void writeStream(Stream stream, Encoding encoding, String data)
+        private void writeStream(Stream stream, System.Text.Encoding encoding, String data)
         {
             byte[] streamBytes = encoding.GetBytes(data);
             stream.Write(streamBytes, 0, streamBytes.Length);
