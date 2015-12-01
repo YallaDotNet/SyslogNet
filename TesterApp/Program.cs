@@ -1,11 +1,9 @@
 using System;
-using System.Threading;
 using CommandLine;
 using SyslogNet.Client;
 using SyslogNet.Client.Serialization;
 using SyslogNet.Client.Transport;
 using System.Threading.Tasks;
-using System.Text;
 
 namespace TesterApp
 {
@@ -74,7 +72,7 @@ namespace TesterApp
                     await sender.SendAsync(msg1, serializer);
                     Console.WriteLine("Sent message 1");
 
-                    Thread.Sleep(5000);
+                    await Task.Delay(5000);
 
                     SyslogMessage msg2 = CreateSyslogMessage(options);
                     await sender.SendAsync(msg2, serializer);
