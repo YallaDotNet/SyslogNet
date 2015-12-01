@@ -79,6 +79,7 @@
     <Compile Include="Text\EncoderReplacementFallbackBuffer.cs" />
     <Compile Include="Text\Encoding.cs" />
     <Compile Include="Transport\ISyslogMessageAsyncSender.cs" />
+    <Compile Include="Transport\SyslogAsyncSenderBase.cs" />
     <Compile Include="Transport\SyslogTcpAsyncSender.cs" />
     <Compile Include="Transport\SyslogTransportException.cs" />
     <Compile Include="Transport\SyslogUdpAsyncSender.cs" />

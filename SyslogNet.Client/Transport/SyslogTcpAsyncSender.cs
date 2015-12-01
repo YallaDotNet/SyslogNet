@@ -15,27 +15,24 @@ namespace SyslogNet.Client.Transport
         NonTransparentFraming = 1
     }
 
-    public class SyslogTcpAsyncSenderBase : ISyslogMessageAsyncSender, IDisposable
+    public abstract class SyslogTcpAsyncSenderBase : SyslogAsyncSenderBase, ISyslogMessageAsyncSender, IDisposable
     {
         private const byte Delimiter = 32; // Space
         private const byte Trailer = 10; // LF
 
-        private readonly string hostname;
-        private readonly int port;
         private readonly bool secure;
         private readonly MessageTransfer messageTransfer;
 
         private TcpSocketClient tcpClient = null;
 
         protected SyslogTcpAsyncSenderBase(string hostname, int port, bool secure, MessageTransfer messageTransfer)
+            : base(hostname, port)
         {
-            this.hostname = hostname;
-            this.port = port;
             this.secure = secure;
             this.messageTransfer = messageTransfer;
         }
 
-        public async Task ConnectAsync()
+        protected override async Task ConnectAsync(string hostname, int port)
         {
             using (this)
             {
@@ -56,22 +53,12 @@ namespace SyslogNet.Client.Transport
             await ConnectAsync();
         }
 
-        public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer)
-        {
-            await SendAsync(message, serializer, true, CancellationToken.None);
-        }
-
-        public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
+        public override async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             await SendAsync(message, serializer, true, cancellationToken);
         }
 
-        public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer)
-        {
-            await SendAsync(messages, serializer, CancellationToken.None);
-        }
-
-        public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
+        public override async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             foreach (SyslogMessage message in messages)
             {
