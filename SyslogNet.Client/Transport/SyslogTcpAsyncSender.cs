@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace SyslogNet.Client.Transport
 {
-	public enum MessageTransfer {
-		OctetCounting		= 0,
-		NonTransparentFraming	= 1
-	}
+    public enum MessageTransfer
+    {
+        OctetCounting = 0,
+        NonTransparentFraming = 1
+    }
 
-	public sealed class SyslogTcpAsyncSender : ISyslogMessageAsyncSender, IDisposable
-	{
+    public sealed class SyslogTcpAsyncSender : ISyslogMessageAsyncSender, IDisposable
+    {
         private const byte Delimiter = 32; // Space
         private const byte Trailer = 10; // LF
 
@@ -24,12 +25,12 @@ namespace SyslogNet.Client.Transport
         private readonly MessageTransfer messageTransfer;
         private readonly bool secure;
 
-		private TcpSocketClient tcpClient = null;
+        private TcpSocketClient tcpClient = null;
 
         public SyslogTcpAsyncSender(string hostname, int port, MessageTransfer messageTransfer = MessageTransfer.OctetCounting, bool secure = false)
-		{
-			this.hostname = hostname;
-			this.port = port;
+        {
+            this.hostname = hostname;
+            this.port = port;
             this.secure = secure;
 
             if (!messageTransfer.Equals(MessageTransfer.OctetCounting) && secure)
@@ -37,16 +38,16 @@ namespace SyslogNet.Client.Transport
                 throw new SyslogTransportException("Non-Transparent-Framing can not be used with TLS transport");
             }
             this.messageTransfer = messageTransfer;
-		}
+        }
 
-		public async Task ConnectAsync()
-		{
-			using (this)
-			{
-				tcpClient = new TcpSocketClient();
+        public async Task ConnectAsync()
+        {
+            using (this)
+            {
+                tcpClient = new TcpSocketClient();
                 await tcpClient.ConnectAsync(hostname, port, secure).ConfigureAwait(false);
-			}
-		}
+            }
+        }
 
         public async Task DisconnectAsync()
         {
@@ -66,9 +67,9 @@ namespace SyslogNet.Client.Transport
         }
 
         public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
-		{
-			await SendAsync(message, serializer, true, cancellationToken);
-		}
+        {
+            await SendAsync(message, serializer, true, cancellationToken);
+        }
 
         public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer)
         {
@@ -76,23 +77,23 @@ namespace SyslogNet.Client.Transport
         }
 
         public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
-		{
-			foreach (SyslogMessage message in messages)
-			{
+        {
+            foreach (SyslogMessage message in messages)
+            {
                 await SendAsync(message, serializer, false, cancellationToken);
-			}
+            }
 
             await TransportStream.FlushAsync(cancellationToken);
-		}
+        }
 
-		public void Dispose()
-		{
-			if (tcpClient != null)
-			{
-				tcpClient.Dispose();
-				tcpClient = null;
-			}
-		}
+        public void Dispose()
+        {
+            if (tcpClient != null)
+            {
+                tcpClient.Dispose();
+                tcpClient = null;
+            }
+        }
 
         private async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, bool flush, CancellationToken cancellationToken)
         {

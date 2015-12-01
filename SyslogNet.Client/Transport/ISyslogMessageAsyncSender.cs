@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SyslogNet.Client.Transport
 {
-	public interface ISyslogMessageAsyncSender : IDisposable
-	{
+    public interface ISyslogMessageAsyncSender : IDisposable
+    {
         Task ConnectAsync();
         Task DisconnectAsync();
         Task ReconnectAsync();

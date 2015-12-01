@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace SyslogNet.Client.Transport
 {
-	public sealed class SyslogUdpAsyncSender : ISyslogMessageAsyncSender, IDisposable
-	{
+    public sealed class SyslogUdpAsyncSender : ISyslogMessageAsyncSender, IDisposable
+    {
         private readonly string hostname;
         private readonly int port;
         private readonly UdpSocketClient udpClient;
 
-		public SyslogUdpAsyncSender(string hostname, int port)
-		{
+        public SyslogUdpAsyncSender(string hostname, int port)
+        {
             this.hostname = hostname;
             this.port = port;
             this.udpClient = new UdpSocketClient();
-		}
+        }
 
         public async Task ConnectAsync()
         {
@@ -43,10 +43,10 @@ namespace SyslogNet.Client.Transport
         }
 
         public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
-		{
+        {
             // UdpSocketClient is cancellationless
             await SendAsync(message, serializer);
-		}
+        }
 
         public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer)
         {
@@ -57,14 +57,14 @@ namespace SyslogNet.Client.Transport
         }
 
         public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
-		{
+        {
             // UdpSocketClient is cancellationless
             await SendAsync(messages, serializer);
         }
 
-		public void Dispose()
-		{
-			udpClient.Dispose();
-		}
+        public void Dispose()
+        {
+            udpClient.Dispose();
+        }
     }
 }
