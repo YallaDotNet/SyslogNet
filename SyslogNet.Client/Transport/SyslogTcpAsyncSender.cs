@@ -77,6 +77,12 @@ namespace SyslogNet.Client.Transport
             }
         }
 
+        protected override void Serialize(SyslogMessage message, ISyslogMessageSerializer serializer, Stream stream)
+        {
+            base.Serialize(message, serializer, stream);
+            stream.WriteByte(Trailer); // LF
+        }
+
         private async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, bool flush, CancellationToken cancellationToken)
         {
             if (TransportStream == null)
@@ -95,17 +101,6 @@ namespace SyslogNet.Client.Transport
 
             if (flush)
                 await TransportStream.FlushAsync(cancellationToken);
-        }
-
-        private static byte[] Serialize(SyslogMessage message, ISyslogMessageSerializer serializer)
-        {
-            using (var memoryStream = new MemoryStream())
-            {
-                serializer.Serialize(message, memoryStream);
-                memoryStream.WriteByte(Trailer); // LF
-                memoryStream.Flush();
-                return memoryStream.ToArray();
-            }
         }
 
         private static byte[] PrependLength(byte[] datagramBytes)
