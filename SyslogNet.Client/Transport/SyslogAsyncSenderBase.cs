@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SyslogNet.Client.Transport
 {
-    public abstract class SyslogAsyncSenderBase
+    public abstract class SyslogAsyncSenderBase : ISyslogMessageAsyncSender
     {
         protected readonly string hostname;
         protected readonly int port;
@@ -17,10 +17,16 @@ namespace SyslogNet.Client.Transport
             this.port = port;
         }
 
+        public abstract void Dispose();
+
         public async Task ConnectAsync()
         {
             await ConnectAsync(hostname, port);
         }
+
+        public abstract Task DisconnectAsync();
+
+        public abstract Task ReconnectAsync();
 
         public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer)
         {

@@ -6,14 +6,19 @@ using System.Threading.Tasks;
 
 namespace SyslogNet.Client.Transport
 {
-    public sealed class SyslogUdpAsyncSender : SyslogAsyncSenderBase, ISyslogMessageAsyncSender, IDisposable
+    public sealed class SyslogUdpAsyncSender : SyslogAsyncSenderBase
     {
         private readonly UdpSocketClient udpClient;
 
         public SyslogUdpAsyncSender(string hostname, int port)
             : base(hostname, port)
         {
-            this.udpClient = new UdpSocketClient();
+            udpClient = new UdpSocketClient();
+        }
+
+        public override void Dispose()
+        {
+            udpClient.Dispose();
         }
 
         protected override async Task ConnectAsync(string hostname, int port)
@@ -21,12 +26,12 @@ namespace SyslogNet.Client.Transport
             await udpClient.ConnectAsync(hostname, port).ConfigureAwait(false);
         }
 
-        public async Task DisconnectAsync()
+        public override async Task DisconnectAsync()
         {
             await udpClient.DisconnectAsync().ConfigureAwait(false);
         }
 
-        public Task ReconnectAsync()
+        public override Task ReconnectAsync()
         {
             // UDP is connectionless
             return new TaskCompletionSource<object>().Task;
@@ -36,11 +41,6 @@ namespace SyslogNet.Client.Transport
         {
             var datagramBytes = Serialize(message, serializer);
             await udpClient.SendAsync(datagramBytes).ConfigureAwait(false);
-        }
-
-        public void Dispose()
-        {
-            udpClient.Dispose();
         }
     }
 }

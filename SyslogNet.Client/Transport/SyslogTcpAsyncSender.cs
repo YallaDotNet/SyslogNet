@@ -15,7 +15,7 @@ namespace SyslogNet.Client.Transport
         NonTransparentFraming = 1
     }
 
-    public abstract class SyslogTcpAsyncSenderBase : SyslogAsyncSenderBase, ISyslogMessageAsyncSender, IDisposable
+    public abstract class SyslogTcpAsyncSenderBase : SyslogAsyncSenderBase
     {
         private const byte Delimiter = 32; // Space
         private const byte Trailer = 10; // LF
@@ -32,6 +32,15 @@ namespace SyslogNet.Client.Transport
             this.messageTransfer = messageTransfer;
         }
 
+        public override void Dispose()
+        {
+            if (tcpClient != null)
+            {
+                tcpClient.Dispose();
+                tcpClient = null;
+            }
+        }
+
         protected override async Task ConnectAsync(string hostname, int port)
         {
             using (this)
@@ -41,13 +50,13 @@ namespace SyslogNet.Client.Transport
             }
         }
 
-        public async Task DisconnectAsync()
+        public override async Task DisconnectAsync()
         {
             await tcpClient.DisconnectAsync().ConfigureAwait(false);
             Dispose();
         }
 
-        public async Task ReconnectAsync()
+        public override async Task ReconnectAsync()
         {
             await DisconnectAsync();
             await ConnectAsync();
@@ -63,15 +72,6 @@ namespace SyslogNet.Client.Transport
         {
             await base.SendAsync(messages, serializer, cancellationToken);
             await TransportStream.FlushAsync(cancellationToken);
-        }
-
-        public void Dispose()
-        {
-            if (tcpClient != null)
-            {
-                tcpClient.Dispose();
-                tcpClient = null;
-            }
         }
 
         protected override void Serialize(SyslogMessage message, ISyslogMessageSerializer serializer, Stream stream)
