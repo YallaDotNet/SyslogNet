@@ -43,6 +43,7 @@
     <Compile Include="Severity.cs" />
     <Compile Include="StructuredDataElement.cs" />
     <Compile Include="SyslogMessage.cs" />
+    <Compile Include="Transport\ISyslogMessageSender.cs" />
     <Compile Include="Transport\MessageTransfer.cs" />
     <Compile Include="Transport\SyslogTransportException.cs" />
   </ItemGroup>
