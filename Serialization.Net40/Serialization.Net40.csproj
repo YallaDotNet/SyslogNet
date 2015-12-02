@@ -39,32 +39,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SyslogNet.Client.Serialization\ISyslogMessageSerializer.cs">
+    <Compile Include="..\Serialization\ISyslogMessageSerializer.cs">
       <Link>ISyslogMessageSerializer.cs</Link>
     </Compile>
-    <Compile Include="..\SyslogNet.Client.Serialization\Properties\AssemblyInfo.cs">
+    <Compile Include="..\Serialization\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\SyslogNet.Client.Serialization\SyslogLocalMessageSerializer.cs">
+    <Compile Include="..\Serialization\SyslogLocalMessageSerializer.cs">
       <Link>SyslogLocalMessageSerializer.cs</Link>
     </Compile>
-    <Compile Include="..\SyslogNet.Client.Serialization\SyslogMessageSerializerBase.cs">
+    <Compile Include="..\Serialization\SyslogMessageSerializerBase.cs">
       <Link>SyslogMessageSerializerBase.cs</Link>
     </Compile>
-    <Compile Include="..\SyslogNet.Client.Serialization\SyslogMessageSerializerExtensions.cs">
+    <Compile Include="..\Serialization\SyslogMessageSerializerExtensions.cs">
       <Link>SyslogMessageSerializerExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\SyslogNet.Client.Serialization\SyslogRfc3164MessageSerializer.cs">
+    <Compile Include="..\Serialization\SyslogRfc3164MessageSerializer.cs">
       <Link>SyslogRfc3164MessageSerializer.cs</Link>
     </Compile>
-    <Compile Include="..\SyslogNet.Client.Serialization\SyslogRfc5424MessageSerializer.cs">
+    <Compile Include="..\Serialization\SyslogRfc5424MessageSerializer.cs">
       <Link>SyslogRfc5424MessageSerializer.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SyslogNet.Client.Core\SyslogNet.Client.Core.csproj">
+    <ProjectReference Include="..\Core\Core.csproj">
       <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
-      <Name>SyslogNet.Client.Core</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

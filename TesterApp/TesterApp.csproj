@@ -55,16 +55,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SyslogNet.Client.Core\SyslogNet.Client.Core.csproj">
+    <ProjectReference Include="..\Core\Core.csproj">
       <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
-      <Name>SyslogNet.Client.Core</Name>
+      <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SyslogNet.Client.Serialization.Net40\SyslogNet.Client.Serialization.Net40.csproj">
+    <ProjectReference Include="..\Serialization.Net40\Serialization.Net40.csproj">
       <Project>{0c040e79-71ea-4ee3-9294-59c1f5beb937}</Project>
-      <Name>SyslogNet.Client.Serialization.Net40</Name>
+      <Name>Serialization.Net40</Name>
     </ProjectReference>
     <ProjectReference Include="..\SyslogNet.Client\SyslogNet.Client.csproj">
-      <Project>{F94B72CD-DA67-436E-9244-FA79DF140E0A}</Project>
+      <Project>{f94b72cd-da67-436e-9244-fa79df140e0a}</Project>
       <Name>SyslogNet.Client</Name>
     </ProjectReference>
   </ItemGroup>

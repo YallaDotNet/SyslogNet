@@ -34,14 +34,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\SyslogNet.Client.Core\SyslogNet.Client.Core.csproj">
+    <ProjectReference Include="..\Core\Core.csproj">
       <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
-      <Name>SyslogNet.Client.Core</Name>
+      <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SyslogNet.Client.Text\SyslogNet.Client.Text.csproj">
+    <ProjectReference Include="..\Text\Text.csproj">
       <Project>{0ef08440-f88f-4325-a030-14f3aabc076f}</Project>
-      <Name>SyslogNet.Client.Text</Name>
+      <Name>Text</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
