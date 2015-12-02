@@ -41,6 +41,7 @@
     </Compile>
     <Compile Include="Facility.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\ISyslogMessageSerializer.cs" />
     <Compile Include="Severity.cs" />
     <Compile Include="StructuredDataElement.cs" />
     <Compile Include="SyslogMessage.cs" />
