@@ -24,9 +24,10 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+using SyslogNet.Client.Text;
 using System;
 
-namespace SyslogNet.Client.Text
+namespace System.Text
 {
     public class ASCIIEncoding : PortableEncoding
     {
