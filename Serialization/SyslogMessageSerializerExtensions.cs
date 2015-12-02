@@ -3,8 +3,18 @@ using System.IO;
 
 namespace SyslogNet.Client.Serialization
 {
+    /// <summary>
+    /// Message serializer extensions.
+    /// </summary>
     public static class SyslogMessageSerializerExtensions
     {
+        /// <summary>
+        /// Serializes a message into a byte array.
+        /// </summary>
+        /// <param name="serializer">Serializer.</param>
+        /// <param name="message">Message.</param>
+        /// <returns>Byte array.</returns>
+        /// <exception cref="ArgumentNullException">missing serializer or message value.</exception>
         public static byte[] Serialize(this ISyslogMessageSerializer serializer, SyslogMessage message)
         {
             if (serializer == null)
