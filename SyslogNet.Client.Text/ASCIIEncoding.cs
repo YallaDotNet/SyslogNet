@@ -28,7 +28,7 @@ using System;
 
 namespace SyslogNet.Client.Text
 {
-    public class ASCIIEncoding : Encoding
+    public class ASCIIEncoding : PortableEncoding
     {
         // Magic number used by Windows for "ASCII".
         internal const int ASCII_CODE_PAGE = 20127;

@@ -28,11 +28,11 @@ using System;
 
 namespace SyslogNet.Client.Text
 {
-    public abstract class Encoding : System.Text.Encoding
+    public abstract class PortableEncoding : System.Text.Encoding
     {
         bool is_readonly = true;
 
-        protected Encoding(int codePage)
+        protected PortableEncoding(int codePage)
         {
             switch (codePage)
             {
@@ -94,30 +94,6 @@ namespace SyslogNet.Client.Text
                     throw new ArgumentNullException();
 
                 encoder_fallback = value;
-            }
-        }
-
-        static volatile Encoding asciiEncoding;
-        static readonly object lockobj = new object();
-
-        // Get the standard ASCII encoding object.
-        public static Encoding ASCII
-        {
-            get
-            {
-                if (asciiEncoding == null)
-                {
-                    lock (lockobj)
-                    {
-                        if (asciiEncoding == null)
-                        {
-                            asciiEncoding = new ASCIIEncoding();
-                            //asciiEncoding.is_readonly = true;
-                        }
-                    }
-                }
-
-                return asciiEncoding;
             }
         }
     }
