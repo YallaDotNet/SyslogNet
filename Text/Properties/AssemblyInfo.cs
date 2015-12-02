@@ -8,4 +8,4 @@ using System.Reflection;
 [assembly: AssemblyCopyright("Copyright © 2014-2015 Xamarin Inc. (www.xamarin.com)")]
 [assembly: AssemblyTrademark("Xamarin Inc.")]
 
-[assembly: AssemblyVersion("0.3.0.*")]
+[assembly: AssemblyVersion("0.3.0")]
