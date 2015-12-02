@@ -4,20 +4,10 @@ using System.Text;
 
 namespace SyslogNet.Client.Serialization
 {
-    public class SyslogRfc3164MessageSerializer : SyslogMessageSerializerBase, ISyslogMessageSerializer
+    public class SyslogRfc3164MessageSerializer : SyslogMessageSerializerBase<SyslogRfc3164MessageSerializer>, ISyslogMessageSerializer
     {
-        private static readonly Lazy<SyslogRfc3164MessageSerializer> _lazy;
-
         static SyslogRfc3164MessageSerializer()
         {
-#pragma warning disable 618
-            _lazy = new Lazy<SyslogRfc3164MessageSerializer>(() => new SyslogRfc3164MessageSerializer());
-#pragma warning restore 618
-        }
-
-        public static SyslogRfc3164MessageSerializer Default
-        {
-            get { return _lazy.Value; }
         }
 
         [Obsolete("Use SyslogRfc3164MessageSerializer.Default instead.")]
