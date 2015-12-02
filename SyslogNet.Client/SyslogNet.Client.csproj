@@ -52,7 +52,6 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transport\IAsyncSyslogSender.cs" />
     <Compile Include="Transport\AsyncSyslogSenderBase.cs" />
     <Compile Include="Transport\AsyncSyslogTcpSender.cs" />
     <Compile Include="Transport\AsyncSyslogUdpSender.cs" />
