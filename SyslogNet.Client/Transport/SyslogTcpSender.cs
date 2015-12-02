@@ -8,11 +8,6 @@ using SyslogNet.Client.Serialization;
 
 namespace SyslogNet.Client.Transport
 {
-	public enum MessageTransfer {
-		OctetCounting		= 0,
-		NonTransparentFraming	= 1
-	}
-
 	public class SyslogTcpSender : ISyslogMessageSender, IDisposable
 	{
 		protected String hostname;
