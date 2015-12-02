@@ -1,5 +1,6 @@
 using Sockets.Plugin;
 using SyslogNet.Client.Serialization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -7,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace SyslogNet.Client.Transport
 {
+    /// <summary>
+    /// Base asynchronous TCP sender.
+    /// </summary>
     public abstract class AsyncSyslogTcpSenderBase : AsyncSyslogSenderBase
     {
         private const byte Delimiter = 32; // Space
@@ -17,6 +21,14 @@ namespace SyslogNet.Client.Transport
 
         private TcpSocketClient tcpClient = null;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AsyncSyslogTcpSenderBase"/> class.
+        /// </summary>
+        /// <param name="hostname">Host name.</param>
+        /// <param name="port">Port number.</param>
+        /// <param name="secure"><c>true</c> to use secure transport.</param>
+        /// <param name="messageTransfer">Message transfer.</param>
+        /// <exception cref="ArgumentNullException">missing hostname value.</exception>
         protected AsyncSyslogTcpSenderBase(string hostname, int port, bool secure, MessageTransfer messageTransfer)
             : base(hostname, port)
         {
@@ -24,6 +36,9 @@ namespace SyslogNet.Client.Transport
             this.messageTransfer = messageTransfer;
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public override void Dispose()
         {
             if (tcpClient != null)
@@ -33,6 +48,12 @@ namespace SyslogNet.Client.Transport
             }
         }
 
+        /// <summary>
+        /// Connects to the remote host.
+        /// </summary>
+        /// <param name="hostname">Host name.</param>
+        /// <param name="port">Port number.</param>
+        /// <returns>Asynchronous task.</returns>
         protected override async Task ConnectAsync(string hostname, int port)
         {
             using (this)
@@ -42,36 +63,71 @@ namespace SyslogNet.Client.Transport
             }
         }
 
+        /// <summary>
+        /// Disconnects from the remote host.
+        /// </summary>
+        /// <returns>Asynchronous task.</returns>
         public override async Task DisconnectAsync()
         {
             await tcpClient.DisconnectAsync().ConfigureAwait(false);
             Dispose();
         }
 
+        /// <summary>
+        /// Reconnects to the remote host.
+        /// </summary>
+        /// <returns>Asynchronous task.</returns>
         public override async Task ReconnectAsync()
         {
             await DisconnectAsync();
             await ConnectAsync();
         }
 
+        /// <summary>
+        /// Sends a message.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        /// <param name="serializer">Serializer.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Asynchronous task.</returns>
         public override async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             await base.SendAsync(message, serializer, cancellationToken);
             await TransportStream.FlushAsync(cancellationToken);
         }
 
+        /// <summary>
+        /// Sends a collection of messages.
+        /// </summary>
+        /// <param name="messages">Messages.</param>
+        /// <param name="serializer">Serializer.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Asynchronous task.</returns>
         public override async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             await base.SendAsync(messages, serializer, cancellationToken);
             await TransportStream.FlushAsync(cancellationToken);
         }
 
+        /// <summary>
+        /// Serializes a message to a stream.
+        /// </summary>
+        /// <param name="message">Message.</param>
+        /// <param name="serializer">Serializer.</param>
+        /// <param name="stream">Stream.</param>
         protected override void Serialize(SyslogMessage message, ISyslogMessageSerializer serializer, Stream stream)
         {
             base.Serialize(message, serializer, stream);
             stream.WriteByte(Trailer); // LF
         }
 
+        /// <summary>
+        /// Sends a message.
+        /// </summary>
+        /// <param name="bytes">Byte array.</param>
+        /// <param name="serializer">Serializer.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Asynchronous task.</returns>
         protected override async Task WriteAsync(byte[] bytes, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             if (TransportStream == null)
@@ -109,16 +165,35 @@ namespace SyslogNet.Client.Transport
         }
     }
 
+    /// <summary>
+    /// Asynchronous TCP sender.
+    /// </summary>
     public sealed class AsyncSyslogTcpSender : AsyncSyslogTcpSenderBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AsyncSyslogTcpSender"/> class.
+        /// </summary>
+        /// <param name="hostname">Host name.</param>
+        /// <param name="port">Port number.</param>
+        /// <param name="messageTransfer">Message transfer.</param>
+        /// <exception cref="ArgumentNullException">missing hostname value.</exception>
         public AsyncSyslogTcpSender(string hostname, int port, MessageTransfer messageTransfer = MessageTransfer.OctetCounting)
             : base(hostname, port, false, messageTransfer)
         {
         }
     }
 
+    /// <summary>
+    /// Asynchronous secure TCP sender.
+    /// </summary>
     public sealed class AsyncSyslogSecureTcpSender : AsyncSyslogTcpSenderBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AsyncSyslogSecureTcpSender"/> class.
+        /// </summary>
+        /// <param name="hostname">Host name.</param>
+        /// <param name="port">Port number.</param>
+        /// <exception cref="ArgumentNullException">missing hostname value.</exception>
         public AsyncSyslogSecureTcpSender(string hostname, int port)
             : base(hostname, port, true, MessageTransfer.NonTransparentFraming)
         {
