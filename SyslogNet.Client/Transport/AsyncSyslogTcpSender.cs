@@ -1,6 +1,5 @@
 using Sockets.Plugin;
 using SyslogNet.Client.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -79,14 +78,12 @@ namespace SyslogNet.Client.Transport
             stream.WriteByte(Trailer); // LF
         }
 
-        protected override async Task DoSendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
+        protected override async Task WriteAsync(byte[] bytes, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             if (TransportStream == null)
             {
                 throw new IOException("No transport stream exists");
             }
-
-            var bytes = Serialize(message, serializer);
 
             if (messageTransfer.Equals(MessageTransfer.OctetCounting))
             {

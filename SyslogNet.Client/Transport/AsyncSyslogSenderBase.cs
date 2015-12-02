@@ -1,4 +1,5 @@
 ﻿using SyslogNet.Client.Serialization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -13,6 +14,9 @@ namespace SyslogNet.Client.Transport
 
         protected AsyncSyslogSenderBase(string hostname, int port)
         {
+            if (hostname == null)
+                throw new ArgumentNullException("hostname");
+
             this.hostname = hostname;
             this.port = port;
         }
@@ -45,14 +49,36 @@ namespace SyslogNet.Client.Transport
 
         public virtual async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
+            if (messages == null)
+                throw new ArgumentNullException("messages");
+
             foreach (SyslogMessage message in messages)
-            {
                 await DoSendAsync(message, serializer, cancellationToken);
-            }
         }
 
-        protected byte[] Serialize(SyslogMessage message, ISyslogMessageSerializer serializer)
+        protected abstract Task ConnectAsync(string hostname, int port);
+
+        protected virtual void Serialize(SyslogMessage message, ISyslogMessageSerializer serializer, Stream stream)
         {
+            serializer.Serialize(message, stream);
+        }
+
+        protected abstract Task WriteAsync(byte[] datagramBytes, ISyslogMessageSerializer serializer, CancellationToken cancellationToken);
+
+        private async Task DoSendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
+        {
+            var bytes = Serialize(message, serializer);
+            await WriteAsync(bytes, serializer, cancellationToken);
+        }
+
+        private byte[] Serialize(SyslogMessage message, ISyslogMessageSerializer serializer)
+        {
+            if (message == null)
+                throw new ArgumentNullException("message");
+
+            if (serializer == null)
+                throw new ArgumentNullException("serializer");
+
             using (var memoryStream = new MemoryStream())
             {
                 Serialize(message, serializer, memoryStream);
@@ -60,14 +86,5 @@ namespace SyslogNet.Client.Transport
                 return memoryStream.ToArray();
             }
         }
-
-        protected virtual void Serialize(SyslogMessage message, ISyslogMessageSerializer serializer, Stream stream)
-        {
-            serializer.Serialize(message, stream);
-        }
-
-        protected abstract Task ConnectAsync(string hostname, int port);
-
-        protected abstract Task DoSendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken);
     }
 }
