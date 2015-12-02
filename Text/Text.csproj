@@ -34,8 +34,17 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\SyslogNet.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="..\SyslogNet.snk">
+      <Link>Properties\SyslogNet.snk</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ASCIIEncoding.cs" />
