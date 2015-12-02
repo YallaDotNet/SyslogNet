@@ -14,3 +14,12 @@ Available on NuGet:
 ```
 
 ```
+
+Notice
+------
+
+[MIT License](license.md)
+
+Copyright (c) 2013 Andrew Smith  
+Portable.Text.Encoding (c) 2014-2015 Xamarin Inc.  
+Portable SyslogNet adaptation (c) 2015 Dmitry Shechtman
