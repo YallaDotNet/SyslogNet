@@ -22,7 +22,7 @@ namespace SyslogNet.Client.Serialization
 
         [Obsolete("Use SyslogRfc3164MessageSerializer.Default instead.")]
         public SyslogRfc3164MessageSerializer()
-            : this(new SyslogNet.Client.Text.ASCIIEncoding())
+            : this(new ASCIIEncoding())
         {
         }
 
