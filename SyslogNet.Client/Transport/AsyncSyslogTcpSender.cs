@@ -90,6 +90,12 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="OperationCanceledException">
+        /// The token has had cancellation requested.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The associated <see cref="CancellationTokenSource"/> has been disposed.
+        /// </exception>
         public override async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             await base.SendAsync(message, serializer, cancellationToken);
@@ -103,6 +109,12 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="OperationCanceledException">
+        /// The token has had cancellation requested.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The associated <see cref="CancellationTokenSource"/> has been disposed.
+        /// </exception>
         public override async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             await base.SendAsync(messages, serializer, cancellationToken);
@@ -128,6 +140,12 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="OperationCanceledException">
+        /// The token has had cancellation requested.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The associated <see cref="CancellationTokenSource"/> has been disposed.
+        /// </exception>
         protected override async Task WriteAsync(byte[] bytes, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             if (TransportStream == null)

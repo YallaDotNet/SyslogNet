@@ -74,6 +74,12 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="OperationCanceledException">
+        /// The token has had cancellation requested.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The associated <see cref="CancellationTokenSource"/> has been disposed.
+        /// </exception>
         public virtual async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             await DoSendAsync(message, serializer, cancellationToken);
@@ -97,6 +103,12 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="OperationCanceledException">
+        /// The token has had cancellation requested.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The associated <see cref="CancellationTokenSource"/> has been disposed.
+        /// </exception>
         public virtual async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
             if (messages == null)
@@ -132,6 +144,12 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="OperationCanceledException">
+        /// The token has had cancellation requested.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The associated <see cref="CancellationTokenSource"/> has been disposed.
+        /// </exception>
         protected abstract Task WriteAsync(byte[] datagramBytes, ISyslogMessageSerializer serializer, CancellationToken cancellationToken);
 
         private async Task DoSendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)

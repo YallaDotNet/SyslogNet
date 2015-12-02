@@ -70,8 +70,15 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="OperationCanceledException">
+        /// The token has had cancellation requested.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The associated <see cref="CancellationTokenSource"/> has been disposed.
+        /// </exception>
         protected override async Task WriteAsync(byte[] datagramBytes, ISyslogMessageSerializer serializer, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             await udpClient.SendAsync(datagramBytes).ConfigureAwait(false);
         }
     }
