@@ -27,7 +27,7 @@ namespace SyslogNet.Client.Transport
 		[DllImport("libc", ExactSpelling=true)]
 		protected static extern void closelog();
 
-		public static ISyslogMessageSerializer defaultSerializer = new SyslogLocalMessageSerializer();
+        public static ISyslogMessageSerializer defaultSerializer = SyslogLocalMessageSerializer.Default;
 
 		public static int CalculatePriorityValue(Facility? facility, Severity? severity)
 		{
