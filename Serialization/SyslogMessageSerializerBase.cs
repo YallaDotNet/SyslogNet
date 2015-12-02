@@ -9,7 +9,15 @@ namespace SyslogNet.Client.Serialization
 
         protected SyslogMessageSerializerBase(Encoding encoding)
         {
+            if (encoding == null)
+                throw new ArgumentNullException("encoding");
+
             this.encoding = encoding;
+        }
+
+        protected static int CalculatePriorityValue(SyslogMessage message)
+        {
+            return CalculatePriorityValue(message.Facility, message.Severity);
         }
 
         protected static int CalculatePriorityValue(Facility facility, Severity severity)

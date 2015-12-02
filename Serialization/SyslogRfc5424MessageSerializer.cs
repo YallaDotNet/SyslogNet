@@ -29,7 +29,12 @@ namespace SyslogNet.Client.Serialization
 
         public void Serialize(SyslogMessage message, Stream stream)
         {
-            var priorityValue = CalculatePriorityValue(message.Facility, message.Severity);
+            if (message == null)
+                throw new ArgumentNullException("message");
+            if (stream == null)
+                throw new ArgumentNullException("stream");
+
+            var priorityValue = CalculatePriorityValue(message);
 
             // Note: The .Net ISO 8601 "o" format string uses 7 decimal places for fractional second. Syslog spec only allows 6, hence the custom format string
             var timestamp = message.DateTimeOffset.HasValue

@@ -23,7 +23,12 @@ namespace SyslogNet.Client.Serialization
 
         public void Serialize(SyslogMessage message, Stream stream)
         {
-            var priorityValue = CalculatePriorityValue(message.Facility, message.Severity);
+            if (message == null)
+                throw new ArgumentNullException("message");
+            if (stream == null)
+                throw new ArgumentNullException("stream");
+
+            var priorityValue = CalculatePriorityValue(message);
 
             string timestamp = null;
             if (message.DateTimeOffset.HasValue)

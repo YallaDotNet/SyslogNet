@@ -26,6 +26,11 @@ namespace SyslogNet.Client.Serialization
 
         public void Serialize(SyslogMessage message, Stream stream)
         {
+            if (message == null)
+                throw new ArgumentNullException("message");
+            if (stream == null)
+                throw new ArgumentNullException("stream");
+
             // Local syslog serialization only cares about the Message string
             if (!String.IsNullOrWhiteSpace(message.Message))
             {
