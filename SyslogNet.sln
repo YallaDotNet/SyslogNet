@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{889FB0
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogNet.Client", "SyslogNet.Client\SyslogNet.Client.csproj", "{F94B72CD-DA67-436E-9244-FA79DF140E0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transport", "Transport\Transport.csproj", "{F94B72CD-DA67-436E-9244-FA79DF140E0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogNet.Client.Tests", "SyslogNet.Client.Tests\SyslogNet.Client.Tests.csproj", "{2D6094E8-8483-4B91-9D5E-BF98B070763F}"
 EndProject

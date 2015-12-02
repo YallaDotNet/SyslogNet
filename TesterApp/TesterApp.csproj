@@ -63,9 +63,9 @@
       <Project>{0c040e79-71ea-4ee3-9294-59c1f5beb937}</Project>
       <Name>Serialization.Net40</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SyslogNet.Client\SyslogNet.Client.csproj">
+    <ProjectReference Include="..\Transport\Transport.csproj">
       <Project>{f94b72cd-da67-436e-9244-fa79df140e0a}</Project>
-      <Name>SyslogNet.Client</Name>
+      <Name>Transport</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
