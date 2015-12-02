@@ -10,9 +10,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SyslogNet.Client</RootNamespace>
     <AssemblyName>SyslogNet.Client</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,13 +54,9 @@
       <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
       <Name>SyslogNet.Client.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SyslogNet.Client.Serialization\SyslogNet.Client.Serialization.csproj">
-      <Project>{b9434aa7-eac0-4f58-9c81-b0f24778457b}</Project>
-      <Name>SyslogNet.Client.Serialization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SyslogNet.Client.Text\SyslogNet.Client.Text.csproj">
-      <Project>{0ef08440-f88f-4325-a030-14f3aabc076f}</Project>
-      <Name>SyslogNet.Client.Text</Name>
+    <ProjectReference Include="..\SyslogNet.Client.Serialization.Net40\SyslogNet.Client.Serialization.Net40.csproj">
+      <Project>{0c040e79-71ea-4ee3-9294-59c1f5beb937}</Project>
+      <Name>SyslogNet.Client.Serialization.Net40</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
