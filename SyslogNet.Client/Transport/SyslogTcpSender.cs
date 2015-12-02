@@ -8,104 +8,113 @@ using SyslogNet.Client.Serialization;
 
 namespace SyslogNet.Client.Transport
 {
-	public class SyslogTcpSender : ISyslogMessageSender, IDisposable
-	{
-		protected String hostname;
-		protected int port;
+    public class SyslogTcpSender : ISyslogMessageSender, IDisposable
+    {
+        protected String hostname;
+        protected int port;
 
-		protected TcpClient tcpClient = null;
-		protected Stream transportStream = null;
+        protected TcpClient tcpClient = null;
+        protected Stream transportStream = null;
 
-		public virtual MessageTransfer messageTransfer { get; set; }
-		public byte trailer { get; set; }
+        public virtual MessageTransfer messageTransfer { get; set; }
+        public byte trailer { get; set; }
 
-		public SyslogTcpSender(string hostname, int port)
-		{
-			this.hostname = hostname;
-			this.port = port;
+        public SyslogTcpSender(string hostname, int port)
+        {
+            this.hostname = hostname;
+            this.port = port;
 
-			Connect();
+            Connect();
 
-			messageTransfer = MessageTransfer.OctetCounting;
-			trailer = 10; // LF
-		}
+            messageTransfer = MessageTransfer.OctetCounting;
+            trailer = 10; // LF
+        }
 
-		protected void Connect()
-		{
-			try
-			{
-				tcpClient = new TcpClient(hostname, port);
-				transportStream = tcpClient.GetStream();
-			}
-			catch
-			{
-				Dispose();
-				throw;
-			}
-		}
+        public void Connect()
+        {
+            try
+            {
+                tcpClient = new TcpClient(hostname, port);
+                transportStream = tcpClient.GetStream();
+            }
+            catch
+            {
+                Dispose();
+                throw;
+            }
+        }
 
-		public virtual void Reconnect()
-		{
-			Dispose();
-			Connect();
-		}
+        public void Disconnect()
+        {
+            if (tcpClient != null)
+            {
+                tcpClient.Close();
+                tcpClient = null;
+            }
+        }
 
-		public void Send(SyslogMessage message, ISyslogMessageSerializer serializer)
-		{
-			Send(message, serializer, true);
-		}
+        public virtual void Reconnect()
+        {
+            Disconnect();
+            Connect();
+        }
 
-		protected void Send(SyslogMessage message, ISyslogMessageSerializer serializer, bool flush = true)
-		{
-			if(transportStream == null)
-			{
-				throw new IOException("No transport stream exists");
-			}
+        public void Send(SyslogMessage message, ISyslogMessageSerializer serializer)
+        {
+            Send(message, serializer, true);
+        }
 
-			var datagramBytes = serializer.Serialize(message);
+        protected void Send(SyslogMessage message, ISyslogMessageSerializer serializer, bool flush = true)
+        {
+            if (transportStream == null)
+            {
+                throw new IOException("No transport stream exists");
+            }
 
-			if (messageTransfer.Equals(MessageTransfer.OctetCounting))
-			{
-				byte[] messageLength = serializer.Encoding.GetBytes(datagramBytes.Length.ToString());
-				transportStream.Write(messageLength, 0, messageLength.Length);
-				transportStream.WriteByte(32); // Space
-			}
+            var datagramBytes = serializer.Serialize(message);
 
-			transportStream.Write(datagramBytes, 0, datagramBytes.Length);
+            if (messageTransfer.Equals(MessageTransfer.OctetCounting))
+            {
+                byte[] messageLength = serializer.Encoding.GetBytes(datagramBytes.Length.ToString());
+                transportStream.Write(messageLength, 0, messageLength.Length);
+                transportStream.WriteByte(32); // Space
+            }
 
-			if (messageTransfer.Equals(MessageTransfer.NonTransparentFraming))
-			{
-				transportStream.WriteByte(trailer); // LF
-			}
+            transportStream.Write(datagramBytes, 0, datagramBytes.Length);
 
-			if (flush && !(transportStream is NetworkStream))
-				transportStream.Flush();
-		}
+            if (messageTransfer.Equals(MessageTransfer.NonTransparentFraming))
+            {
+                transportStream.WriteByte(trailer); // LF
+            }
 
-		public void Send(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer)
-		{
-			foreach (SyslogMessage message in messages)
-			{
-				Send(message, serializer, false);
-			}
+            if (flush && !(transportStream is NetworkStream))
+                transportStream.Flush();
+        }
 
-			if (!(transportStream is NetworkStream))
-				transportStream.Flush();
-		}
+        public void Send(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer)
+        {
+            foreach (SyslogMessage message in messages)
+            {
+                Send(message, serializer, false);
+            }
 
-		public void Dispose()
-		{
-			if (transportStream != null)
-			{
-				transportStream.Close();
-				transportStream = null;
-			}
+            if (!(transportStream is NetworkStream))
+                transportStream.Flush();
+        }
 
-			if (tcpClient != null)
-			{
-				tcpClient.Close();
-				tcpClient = null;
-			}
-		}
-	}
+        public void Dispose()
+        {
+            if (transportStream != null)
+            {
+                transportStream.Close();
+                transportStream = null;
+            }
+
+            if (tcpClient != null)
+            {
+                tcpClient.Close();
+                tcpClient = null;
+            }
+        }
+    }
 }

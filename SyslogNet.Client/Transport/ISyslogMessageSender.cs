@@ -6,6 +6,8 @@ namespace SyslogNet.Client.Transport
 {
 	public interface ISyslogMessageSender : IDisposable
 	{
+        void Connect();
+        void Disconnect();
 		void Reconnect();
 		void Send(SyslogMessage message, ISyslogMessageSerializer serializer);
 		void Send(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer);
