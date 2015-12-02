@@ -42,9 +42,6 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Serialization\ISyslogMessageSerializer.cs">
-      <Link>ISyslogMessageSerializer.cs</Link>
-    </Compile>
     <Compile Include="..\Serialization\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
