@@ -1,6 +1,5 @@
 using Sockets.Plugin;
 using SyslogNet.Client.Serialization;
-using SyslogNet.Client.Text;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -91,18 +90,18 @@ namespace SyslogNet.Client.Transport
 
             if (messageTransfer.Equals(MessageTransfer.OctetCounting))
             {
-                bytes = PrependLength(bytes);
+                bytes = PrependLength(serializer, bytes);
             }
 
             await TransportStream.WriteAsync(bytes, 0, bytes.Length, cancellationToken).ConfigureAwait(false);
         }
 
-        private static byte[] PrependLength(byte[] datagramBytes)
+        private static byte[] PrependLength(ISyslogMessageSerializer serializer, byte[] datagramBytes)
         {
             var messageLength = datagramBytes.Length.ToString();
-            var messageLengthByteCount = Encoding.ASCII.GetByteCount(messageLength);
+            var messageLengthByteCount = serializer.Encoding.GetByteCount(messageLength);
             var bytes = new byte[messageLengthByteCount + datagramBytes.Length + 1];
-            Encoding.ASCII.GetBytes(messageLength, 0, messageLength.Length, bytes, 0);
+            serializer.Encoding.GetBytes(messageLength, 0, messageLength.Length, bytes, 0);
             bytes[messageLengthByteCount] = Delimiter; // Space
             datagramBytes.CopyTo(bytes, messageLengthByteCount + 1);
             return bytes;

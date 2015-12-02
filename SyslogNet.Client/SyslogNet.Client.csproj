@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;CLIENT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -30,7 +30,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;CLIENT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -46,46 +46,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Text\ASCIIEncoding.cs" />
-    <Compile Include="Facility.cs" />
-    <Compile Include="Serialization\ISyslogMessageSerializer.cs" />
-    <Compile Include="Severity.cs" />
-    <Compile Include="StructuredDataElement.cs" />
-    <Compile Include="Serialization\SyslogMessageSerializerBase.cs" />
-    <Compile Include="Serialization\SyslogRfc3164MessageSerializer.cs">
-      <SubType>Code</SubType>
+    <Compile Include="..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="SyslogMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\SyslogRfc5424MessageSerializer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Serialization\SyslogLocalMessageSerializer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Text\DecoderExceptionFallback.cs" />
-    <Compile Include="Text\DecoderExceptionFallbackBuffer.cs" />
-    <Compile Include="Text\DecoderFallback.cs" />
-    <Compile Include="Text\DecoderFallbackBuffer.cs" />
-    <Compile Include="Text\DecoderFallbackException.cs" />
-    <Compile Include="Text\DecoderReplacementFallback.cs" />
-    <Compile Include="Text\DecoderReplacementFallbackBuffer.cs" />
-    <Compile Include="Text\EncoderExceptionFallback.cs" />
-    <Compile Include="Text\EncoderExceptionFallbackBuffer.cs" />
-    <Compile Include="Text\EncoderFallback.cs" />
-    <Compile Include="Text\EncoderFallbackBuffer.cs" />
-    <Compile Include="Text\EncoderFallbackException.cs" />
-    <Compile Include="Text\EncoderReplacementFallback.cs" />
-    <Compile Include="Text\EncoderReplacementFallbackBuffer.cs" />
-    <Compile Include="Text\Encoding.cs" />
     <Compile Include="Transport\ISyslogMessageAsyncSender.cs" />
     <Compile Include="Transport\SyslogAsyncSenderBase.cs" />
     <Compile Include="Transport\SyslogTcpAsyncSender.cs" />
-    <Compile Include="Transport\SyslogTransportException.cs" />
     <Compile Include="Transport\SyslogUdpAsyncSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Serialization\Serialization.csproj">
+      <Project>{b9434aa7-eac0-4f58-9c81-b0f24778457b}</Project>
+      <Name>Serialization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

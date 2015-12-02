@@ -49,18 +49,18 @@ namespace TesterApp
 
         private static async Task MainAsync(string[] args)
         {
-            try
-            {
-                var options = new Options();
-                if (new CommandLineParser().ParseArguments(args, options))
-                {
-                    // string exceptionMessage = CreateExceptionMessageLevel1();
+			try
+			{
+				var options = new Options();
+				if (new CommandLineParser().ParseArguments(args, options))
+				{
+					// string exceptionMessage = CreateExceptionMessageLevel1();
 
-                    ISyslogMessageSerializer serializer = options.SyslogVersion == "5424"
-                        ? (ISyslogMessageSerializer)new SyslogRfc5424MessageSerializer()
-                        : options.SyslogVersion == "3164"
-                            ? (ISyslogMessageSerializer)new SyslogRfc3164MessageSerializer()
-                            : (ISyslogMessageSerializer)new SyslogLocalMessageSerializer();
+					ISyslogMessageSerializer serializer = options.SyslogVersion == "5424"
+						? (ISyslogMessageSerializer)SyslogRfc5424MessageSerializer.Default
+						: options.SyslogVersion == "3164"
+                            ? (ISyslogMessageSerializer)SyslogRfc3164MessageSerializer.Default
+							: (ISyslogMessageSerializer)SyslogLocalMessageSerializer.Default;
 
                     ISyslogMessageAsyncSender sender = options.NetworkProtocol == "tcp"
                         ? (ISyslogMessageAsyncSender)new SyslogSecureTcpAsyncSender(options.SyslogServerHostname, options.SyslogServerPort)
@@ -68,24 +68,24 @@ namespace TesterApp
 
                     await sender.ConnectAsync();
 
-                    SyslogMessage msg1 = CreateSyslogMessage(options);
+					SyslogMessage msg1 = CreateSyslogMessage(options);
                     await sender.SendAsync(msg1, serializer);
-                    Console.WriteLine("Sent message 1");
+					Console.WriteLine("Sent message 1");
 
                     await Task.Delay(5000);
 
-                    SyslogMessage msg2 = CreateSyslogMessage(options);
+					SyslogMessage msg2 = CreateSyslogMessage(options);
                     await sender.SendAsync(msg2, serializer);
-                    Console.WriteLine("Sent message 2");
+					Console.WriteLine("Sent message 2");
 
                     await sender.DisconnectAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("ERROR: " + ex);
-            }
-        }
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("ERROR: " + ex);
+			}
+		}
 
 		private static SyslogMessage CreateSyslogMessage(Options options)
 		{
