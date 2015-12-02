@@ -11,10 +11,10 @@ namespace SyslogNet.Client.Transport
 		protected int IOTimeout;
 		public Boolean IgnoreTLSChainErrors { get; private set; }
 
-		protected MessageTransfer _messageTransfer;
+		protected MessageTransfer m_messageTransfer;
 		public override MessageTransfer messageTransfer
 		{
-			get { return _messageTransfer; }
+			get { return m_messageTransfer; }
 			set
 			{
 				if (!value.Equals(MessageTransfer.OctetCounting) && transportStream is SslStream)
@@ -22,7 +22,7 @@ namespace SyslogNet.Client.Transport
 					throw new SyslogTransportException("Non-Transparent-Framing can not be used with TLS transport");
 				}
 
-				_messageTransfer = value;
+				m_messageTransfer = value;
 			}
 		}
 
@@ -58,7 +58,7 @@ namespace SyslogNet.Client.Transport
 			if (!((SslStream)transportStream).IsEncrypted)
 				throw new SecurityException("Could not establish an encrypted connection");
 
-			messageTransfer = MessageTransfer.OctetCounting;
+			m_messageTransfer = MessageTransfer.OctetCounting;
 		}
 
 		private bool ValidateServerCertificate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
