@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\SyslogNet.snk</AssemblyOriginatorKeyFile>
@@ -66,11 +66,6 @@
       <Project>{0c040e79-71ea-4ee3-9294-59c1f5beb937}</Project>
       <Name>Serialization.Net40</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\SyslogNet.snk">
-      <Link>Properties\SyslogNet.snk</Link>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

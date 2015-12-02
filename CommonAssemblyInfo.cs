@@ -7,10 +7,18 @@ using System.Reflection;
 [assembly: AssemblyConfiguration("Release")]
 #endif
 
-[assembly: AssemblyCompany("Andrew Smith")]
 [assembly: AssemblyProduct("SyslogNet.Client")]
+
+#if !TEXT
+[assembly: AssemblyCompany("Andrew Smith")]
 [assembly: AssemblyCopyright("Copyright © Andrew Smith 2013")]
 [assembly: AssemblyTrademark("")]
+#endif
+
 [assembly: AssemblyCulture("")]
 
 [assembly: CLSCompliant(true)]
+
+#pragma warning disable 1699
+[assembly: AssemblyKeyFile("../SyslogNet.snk")]
+#pragma warning restore 1699

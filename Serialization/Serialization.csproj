@@ -33,12 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>..\SyslogNet.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
@@ -60,11 +54,6 @@
     <Compile Include="SyslogMessageSerializerExtensions.cs" />
     <Compile Include="SyslogRfc3164MessageSerializer.cs" />
     <Compile Include="SyslogRfc5424MessageSerializer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\SyslogNet.snk">
-      <Link>Properties\SyslogNet.snk</Link>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
