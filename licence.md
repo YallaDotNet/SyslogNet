@@ -1,7 +1,7 @@
 The MIT License (MIT)
 
-Copyright (c) 2013 Andrew Smith
-Portable.Text.Encoding (c) 2014-2015 Xamarin Inc.
+Copyright (c) 2013 Andrew Smith  
+Portable.Text.Encoding (c) 2014-2015 Xamarin Inc.  
 Portable SyslogNet adaptation (c) 2015 Dmitry Shechtman
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
