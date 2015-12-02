@@ -71,7 +71,7 @@ namespace SyslogNet.Client.Transport
 
 			if (messageTransfer.Equals(MessageTransfer.OctetCounting))
 			{
-				byte[] messageLength = Encoding.ASCII.GetBytes(datagramBytes.Length.ToString());
+				byte[] messageLength = serializer.Encoding.GetBytes(datagramBytes.Length.ToString());
 				transportStream.Write(messageLength, 0, messageLength.Length);
 				transportStream.WriteByte(32); // Space
 			}
