@@ -40,13 +40,16 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Facility.cs" />
+    <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\ISyslogMessageSerializer.cs" />
+    <Compile Include="Serialization\NamespaceDoc.cs" />
     <Compile Include="Severity.cs" />
     <Compile Include="StructuredDataElement.cs" />
     <Compile Include="SyslogMessage.cs" />
     <Compile Include="Transport\ISyslogMessageSender.cs" />
     <Compile Include="Transport\MessageTransfer.cs" />
+    <Compile Include="Transport\NamespaceDoc.cs" />
     <Compile Include="Transport\SyslogTransportException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
