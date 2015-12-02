@@ -18,7 +18,7 @@ Available on NuGet:
 Notice
 ------
 
-[MIT License](license.md)
+[MIT License](LICENSE)
 
 Copyright (c) 2013 Andrew Smith  
 Portable.Text.Encoding (c) 2014-2015 Xamarin Inc.  
