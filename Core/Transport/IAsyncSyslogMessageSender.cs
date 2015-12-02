@@ -9,7 +9,7 @@ namespace SyslogNet.Client.Transport
     /// <summary>
     /// Asynchronous message sender.
     /// </summary>
-    public interface IAsyncSyslogSender : IDisposable
+    public interface IAsyncSyslogMessageSender : IDisposable
     {
         /// <summary>
         /// Connects to the remote host.
