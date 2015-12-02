@@ -19,7 +19,7 @@ using System.Reflection;
 
 [assembly: CLSCompliant(true)]
 
-#if !CLIENT
+#if !TRANSPORT
 #pragma warning disable 1699
 [assembly: AssemblyKeyFile("../SyslogNet.snk")]
 #pragma warning restore 1699
