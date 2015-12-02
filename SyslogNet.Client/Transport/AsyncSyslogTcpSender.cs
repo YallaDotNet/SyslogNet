@@ -7,12 +7,6 @@ using System.Threading.Tasks;
 
 namespace SyslogNet.Client.Transport
 {
-    public enum MessageTransfer
-    {
-        OctetCounting = 0,
-        NonTransparentFraming = 1
-    }
-
     public abstract class AsyncSyslogTcpSenderBase : AsyncSyslogSenderBase
     {
         private const byte Delimiter = 32; // Space
