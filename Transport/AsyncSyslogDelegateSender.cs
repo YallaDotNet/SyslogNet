@@ -9,7 +9,7 @@ namespace SyslogNet.Client.Transport
     /// <summary>
     /// Asynchronous delegate sender.
     /// </summary>
-    public class AsyncSyslogDelegateSender : IAsyncSyslogSender
+    public class AsyncSyslogDelegateSender : IAsyncSyslogMessageSender
     {
         private readonly ISyslogMessageSender innerSender;
 

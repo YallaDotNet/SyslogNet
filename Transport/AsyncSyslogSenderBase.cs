@@ -10,7 +10,7 @@ namespace SyslogNet.Client.Transport
     /// <summary>
     /// Base asynchronous sender.
     /// </summary>
-    public abstract class AsyncSyslogSenderBase : IAsyncSyslogSender
+    public abstract class AsyncSyslogSenderBase : IAsyncSyslogMessageSender
     {
         private readonly string hostname;
         private readonly int port;
