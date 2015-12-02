@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SyslogNet.Client.Transport
 {
-    public sealed class SyslogUdpAsyncSender : SyslogAsyncSenderBase
+    public sealed class AsyncSyslogUdpSender : AsyncSyslogSenderBase
     {
         private readonly UdpSocketClient udpClient;
 
-        public SyslogUdpAsyncSender(string hostname, int port)
+        public AsyncSyslogUdpSender(string hostname, int port)
             : base(hostname, port)
         {
             udpClient = new UdpSocketClient();

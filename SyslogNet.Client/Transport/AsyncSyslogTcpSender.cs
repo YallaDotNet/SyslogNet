@@ -14,7 +14,7 @@ namespace SyslogNet.Client.Transport
         NonTransparentFraming = 1
     }
 
-    public abstract class SyslogTcpAsyncSenderBase : SyslogAsyncSenderBase
+    public abstract class AsyncSyslogTcpSenderBase : AsyncSyslogSenderBase
     {
         private const byte Delimiter = 32; // Space
         private const byte Trailer = 10; // LF
@@ -24,7 +24,7 @@ namespace SyslogNet.Client.Transport
 
         private TcpSocketClient tcpClient = null;
 
-        protected SyslogTcpAsyncSenderBase(string hostname, int port, bool secure, MessageTransfer messageTransfer)
+        protected AsyncSyslogTcpSenderBase(string hostname, int port, bool secure, MessageTransfer messageTransfer)
             : base(hostname, port)
         {
             this.secure = secure;
@@ -118,17 +118,17 @@ namespace SyslogNet.Client.Transport
         }
     }
 
-    public sealed class SyslogTcpAsyncSender : SyslogTcpAsyncSenderBase
+    public sealed class AsyncSyslogTcpSender : AsyncSyslogTcpSenderBase
     {
-        public SyslogTcpAsyncSender(string hostname, int port, MessageTransfer messageTransfer = MessageTransfer.OctetCounting)
+        public AsyncSyslogTcpSender(string hostname, int port, MessageTransfer messageTransfer = MessageTransfer.OctetCounting)
             : base(hostname, port, false, messageTransfer)
         {
         }
     }
 
-    public sealed class SyslogSecureTcpAsyncSender : SyslogTcpAsyncSenderBase
+    public sealed class AsyncSyslogSecureTcpSender : AsyncSyslogTcpSenderBase
     {
-        public SyslogSecureTcpAsyncSender(string hostname, int port)
+        public AsyncSyslogSecureTcpSender(string hostname, int port)
             : base(hostname, port, true, MessageTransfer.NonTransparentFraming)
         {
         }

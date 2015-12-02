@@ -62,9 +62,9 @@ namespace TesterApp
                             ? (ISyslogMessageSerializer)SyslogRfc3164MessageSerializer.Default
 							: (ISyslogMessageSerializer)SyslogLocalMessageSerializer.Default;
 
-                    ISyslogMessageAsyncSender sender = options.NetworkProtocol == "tcp"
-                        ? (ISyslogMessageAsyncSender)new SyslogSecureTcpAsyncSender(options.SyslogServerHostname, options.SyslogServerPort)
-                        : (ISyslogMessageAsyncSender)new SyslogUdpAsyncSender(options.SyslogServerHostname, options.SyslogServerPort);
+                    IAsyncSyslogSender sender = options.NetworkProtocol == "tcp"
+                        ? (IAsyncSyslogSender)new AsyncSyslogSecureTcpSender(options.SyslogServerHostname, options.SyslogServerPort)
+                        : (IAsyncSyslogSender)new AsyncSyslogUdpSender(options.SyslogServerHostname, options.SyslogServerPort);
 
                     await sender.ConnectAsync();
 

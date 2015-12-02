@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SyslogNet.Client.Transport
 {
-    public abstract class SyslogAsyncSenderBase : ISyslogMessageAsyncSender
+    public abstract class AsyncSyslogSenderBase : IAsyncSyslogSender
     {
         protected readonly string hostname;
         protected readonly int port;
 
-        protected SyslogAsyncSenderBase(string hostname, int port)
+        protected AsyncSyslogSenderBase(string hostname, int port)
         {
             this.hostname = hostname;
             this.port = port;
