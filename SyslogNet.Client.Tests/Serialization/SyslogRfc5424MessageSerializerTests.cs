@@ -12,7 +12,7 @@ namespace SyslogNet.Client.Tests.Serialization
 
 		public SyslogRfc5424MessageSerializerTests()
 		{
-            sut = new SyslogRfc5424MessageSerializer(Encoding.ASCII);
+            sut = new SyslogRfc5424MessageSerializer();
 		}
 
 		[Theory]

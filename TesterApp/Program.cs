@@ -53,9 +53,9 @@ namespace TesterApp
 					// string exceptionMessage = CreateExceptionMessageLevel1();
 
 					ISyslogMessageSerializer serializer = options.SyslogVersion == "5424"
-						? (ISyslogMessageSerializer)new SyslogRfc5424MessageSerializer(Encoding.ASCII)
+						? (ISyslogMessageSerializer)new SyslogRfc5424MessageSerializer()
 						: options.SyslogVersion == "3164"
-                            ? (ISyslogMessageSerializer)new SyslogRfc3164MessageSerializer(Encoding.ASCII)
+                            ? (ISyslogMessageSerializer)new SyslogRfc3164MessageSerializer()
 							: (ISyslogMessageSerializer)new SyslogLocalMessageSerializer();
 
 					ISyslogMessageSender sender = options.NetworkProtocol == "tcp"

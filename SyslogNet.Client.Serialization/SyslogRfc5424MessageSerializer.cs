@@ -10,7 +10,27 @@ namespace SyslogNet.Client.Serialization
         public const string NilValue = "-";
         public static readonly HashSet<char> sdNameDisallowedChars = new HashSet<char>() { ' ', '=', ']', '"' };
 
+        private static readonly Lazy<SyslogRfc5424MessageSerializer> _lazy;
+
+        static SyslogRfc5424MessageSerializer()
+        {
+#pragma warning disable 618
+            _lazy = new Lazy<SyslogRfc5424MessageSerializer>(() => new SyslogRfc5424MessageSerializer());
+#pragma warning restore 618
+        }
+
         private readonly char[] asciiCharsBuffer = new char[255];
+
+        public static SyslogRfc5424MessageSerializer Default
+        {
+            get { return _lazy.Value; }
+        }
+
+        [Obsolete("Use SyslogRfc5424MessageSerializer.Default instead.")]
+        public SyslogRfc5424MessageSerializer()
+            : this(new SyslogNet.Client.Text.ASCIIEncoding())
+        {
+        }
 
         public SyslogRfc5424MessageSerializer(Encoding encoding)
             : base(encoding)

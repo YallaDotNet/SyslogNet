@@ -6,8 +6,26 @@ namespace SyslogNet.Client.Serialization
 {
     public class SyslogLocalMessageSerializer : SyslogMessageSerializerBase, ISyslogMessageSerializer
     {
+        private static readonly Lazy<SyslogLocalMessageSerializer> _lazy;
+
+        static SyslogLocalMessageSerializer()
+        {
+#pragma warning disable 618
+            _lazy = new Lazy<SyslogLocalMessageSerializer>(() => new SyslogLocalMessageSerializer());
+#pragma warning restore 618
+        }
+
+        public static SyslogLocalMessageSerializer Default
+        {
+            get { return _lazy.Value; }
+        }
+
         // Default constructor: produce no BOM in local syslog messages
-        public SyslogLocalMessageSerializer() : this(false) { ; }
+        [Obsolete("Use SyslogLocalMessageSerializer.Default instead.")]
+        public SyslogLocalMessageSerializer()
+            : this(false)
+        {
+        }
 
         // Optionally produce a BOM in local syslog messages by passing true here
         // (This can produce problems with some older syslog programs, so default is false)
