@@ -50,7 +50,6 @@
     <Compile Include="SyslogMessage.cs" />
     <Compile Include="Transport\IAsyncSyslogMessageSender.cs" />
     <Compile Include="Transport\ISyslogMessageSender.cs" />
-    <Compile Include="Transport\MessageTransfer.cs" />
     <Compile Include="Transport\NamespaceDoc.cs" />
     <Compile Include="Transport\SyslogTransportException.cs" />
   </ItemGroup>
