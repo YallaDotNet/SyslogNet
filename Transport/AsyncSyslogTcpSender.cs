@@ -32,6 +32,9 @@ namespace SyslogNet.Client.Transport
         protected AsyncSyslogTcpSenderBase(string hostname, int port, bool secure, MessageTransfer messageTransfer)
             : base(hostname, port)
         {
+            if (secure && messageTransfer != MessageTransfer.OctetCounting)
+                throw new SyslogTransportException("Non-Transparent-Framing can not be used with TLS transport");
+
             this.secure = secure;
             this.messageTransfer = messageTransfer;
         }
