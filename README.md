@@ -1,7 +1,7 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/lnoc3a1118t9og8o?svg=true)](https://ci.appveyor.com/project/dmitry-shechtman/syslognet-yia6l)
+[![Build status](https://ci.appveyor.com/api/projects/status/2iwx9qgi9w48iibi?svg=true)](https://ci.appveyor.com/project/dmitry-shechtman/syslog)
 
-Portable syslog
-===============
+![syslog](http://yalladotnet.github.io/syslog/icons/Help.png) Portable syslog
+===
 
 
 Introduction
@@ -17,7 +17,7 @@ Platforms
 
 * .NET Framework 4.5
 * Windows Store
-* Windows Phone 8 Silverlight
+* Windows Phone Silverlight 8
 * Windows Phone 8.1
 * Xamarin.Android
 * Xamarin.iOS
