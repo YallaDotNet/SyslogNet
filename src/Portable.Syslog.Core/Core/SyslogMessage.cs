@@ -21,13 +21,13 @@ namespace SyslogNet.Client
         /// <summary>
         /// Default message facility.
         /// </summary>
-        [Obsolete]
+        [Obsolete("This field will be removed in a future version.")]
         public static Facility DefaultFacility = Facility.UserLevelMessages;
 
         /// <summary>
         /// Default message severity.
         /// </summary>
-        [Obsolete]
+        [Obsolete("This field will be removed in a future version.")]
         public static Severity DefaultSeverity = Severity.Informational;
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace SyslogNet.Client
             Severity severity,
             string appName,
             string message)
-#pragma warning disable 612
+#pragma warning disable 612, 618
             : this(DefaultFacility, severity, appName, message)
-#pragma warning restore 612
+#pragma warning restore 612, 618
         {
         }
 
@@ -77,6 +77,9 @@ namespace SyslogNet.Client
         /// <param name="hostName">Host name.</param>
         /// <param name="appName">Application name.</param>
         /// <param name="message">Message text.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="hostName"/> value.
+        /// </exception>
         public SyslogMessage(
             DateTimeOffset? dateTimeOffset,
             Facility facility,
@@ -109,6 +112,9 @@ namespace SyslogNet.Client
         /// <param name="msgId">Message identifier.</param>
         /// <param name="message">Message text.</param>
         /// <param name="structuredDataElements">Structured data.</param>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="hostName"/> or <paramref name="structuredDataElements"/> value.
+        /// </exception>
         public SyslogMessage(
             DateTimeOffset? dateTimeOffset,
             Facility facility,
