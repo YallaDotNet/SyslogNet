@@ -2,4 +2,4 @@
 
 [assembly: AssemblyTitle("SyslogNet.Client.Serialization")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyVersion("0.3.0")]
+[assembly: AssemblyVersion("0.4.0")]
