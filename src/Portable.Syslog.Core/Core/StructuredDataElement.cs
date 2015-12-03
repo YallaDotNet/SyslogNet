@@ -6,14 +6,16 @@ namespace SyslogNet.Client
     /// <summary>
     /// RFC 5424 structured data element.
     /// </summary>
-    public class StructuredDataElement
+#pragma warning disable 612, 618
+    public class StructuredDataElement : IStructuredDataElement
+#pragma warning restore 612, 618
     {
         /// <summary>
         /// Private enterprise number.
         /// </summary>
         /// RFC 5424 specifies that you must provide a private enterprise number.
         /// If none specified, the example number reserved for documentation will be used (see RFC).
-        [Obsolete]
+        [Obsolete("This field will be removed in a future version.")]
         public const string DefaultPrivateEnterpriseNumber = "32473";
 
         private readonly string sdId;
@@ -34,9 +36,9 @@ namespace SyslogNet.Client
             if (parameters == null)
                 throw new ArgumentNullException("parameters");
 
-#pragma warning disable 612
+#pragma warning disable 612, 618
             this.sdId = sdId.Contains("@") ? sdId : sdId + "@" + DefaultPrivateEnterpriseNumber;
-#pragma warning restore 612
+#pragma warning restore 612, 618
             this.parameters = new Dictionary<string, string>(parameters);
         }
 
@@ -53,7 +55,12 @@ namespace SyslogNet.Client
         /// Gets the parameters.
         /// </summary>
         /// <value>Structured data parameters.</value>
-        public Dictionary<string, string> Parameters
+        public IDictionary<string, string> Parameters
+        {
+            get { return parameters; }
+        }
+
+        Dictionary<string, string> IStructuredDataElement.Parameters
         {
             get { return parameters; }
         }
