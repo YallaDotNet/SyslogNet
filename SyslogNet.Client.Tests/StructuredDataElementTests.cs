@@ -14,8 +14,10 @@ namespace SyslogNet.Client.Tests
 			};
 			var sut = new StructuredDataElement("SomeSdId", parameters);
 
+#pragma warning disable 612, 618
 			Assert.Equal("SomeSdId@" + StructuredDataElement.DefaultPrivateEnterpriseNumber, sut.SdId);
-		}
+#pragma warning restore 612, 618
+        }
 
 		[Fact]
 		public void StructuredDataIdWillRetainProvidedPrivateEnterpriseNumber()
