@@ -14,7 +14,7 @@ namespace SyslogNet.Client.Serialization
         /// <param name="serializer">Serializer.</param>
         /// <param name="message">Message.</param>
         /// <returns>Byte array.</returns>
-        /// <exception cref="ArgumentNullException">missing serializer or message value.</exception>
+        /// <exception cref="ArgumentNullException">Missing serializer or message value.</exception>
         public static byte[] Serialize(this ISyslogMessageSerializer serializer, SyslogMessage message)
         {
             if (serializer == null)

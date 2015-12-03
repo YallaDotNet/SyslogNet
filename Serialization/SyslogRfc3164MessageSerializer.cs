@@ -26,7 +26,7 @@ namespace SyslogNet.Client.Serialization
         /// Initializes a new instance of the <see cref="SyslogRfc3164MessageSerializer"/> class.
         /// </summary>
         /// <param name="encoding">Encoding.</param>
-        /// <exception cref="ArgumentNullException">missing encoding value.</exception>
+        /// <exception cref="ArgumentNullException">Missing encoding value.</exception>
         public SyslogRfc3164MessageSerializer(Encoding encoding)
             : base(encoding)
         {
@@ -37,7 +37,7 @@ namespace SyslogNet.Client.Serialization
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="stream">Stream.</param>
-        /// <exception cref="ArgumentNullException">missing message or stream value.</exception>
+        /// <exception cref="ArgumentNullException">Missing message or stream value.</exception>
         public void Serialize(SyslogMessage message, Stream stream)
         {
             if (message == null)

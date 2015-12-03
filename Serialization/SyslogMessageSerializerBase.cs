@@ -14,7 +14,7 @@ namespace SyslogNet.Client.Serialization
         /// Initializes a new instance of the <see cref="SyslogMessageSerializerBase"/> class.
         /// </summary>
         /// <param name="encoding">Encoding.</param>
-        /// <exception cref="ArgumentNullException">missing encoding value.</exception>
+        /// <exception cref="ArgumentNullException">Missing encoding value.</exception>
         protected SyslogMessageSerializerBase(Encoding encoding)
         {
             if (encoding == null)
@@ -84,7 +84,7 @@ namespace SyslogNet.Client.Serialization
         /// Initializes a new instance of the <see cref="SyslogMessageSerializerBase"/> class.
         /// </summary>
         /// <param name="encoding">Encoding.</param>
-        /// <exception cref="ArgumentNullException">missing encoding value.</exception>
+        /// <exception cref="ArgumentNullException">Missing encoding value.</exception>
         protected SyslogMessageSerializerBase(Encoding encoding)
             : base(encoding)
         {

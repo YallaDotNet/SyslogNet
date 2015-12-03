@@ -28,7 +28,7 @@ namespace SyslogNet.Client.Transport
         /// <param name="port">Port number.</param>
         /// <param name="secure"><c>true</c> to use secure transport.</param>
         /// <param name="messageTransfer">Message transfer.</param>
-        /// <exception cref="ArgumentNullException">missing hostname value.</exception>
+        /// <exception cref="ArgumentNullException">Missing hostname value.</exception>
         protected AsyncSyslogTcpSenderBase(string hostname, int port, bool secure, MessageTransfer messageTransfer)
             : base(hostname, port)
         {
@@ -197,7 +197,7 @@ namespace SyslogNet.Client.Transport
         /// <param name="hostname">Host name.</param>
         /// <param name="port">Port number.</param>
         /// <param name="messageTransfer">Message transfer.</param>
-        /// <exception cref="ArgumentNullException">missing hostname value.</exception>
+        /// <exception cref="ArgumentNullException">Missing hostname value.</exception>
         public AsyncSyslogTcpSender(string hostname, int port, MessageTransfer messageTransfer = MessageTransfer.OctetCounting)
             : base(hostname, port, false, messageTransfer)
         {
@@ -214,7 +214,7 @@ namespace SyslogNet.Client.Transport
         /// </summary>
         /// <param name="hostname">Host name.</param>
         /// <param name="port">Port number.</param>
-        /// <exception cref="ArgumentNullException">missing hostname value.</exception>
+        /// <exception cref="ArgumentNullException">Missing hostname value.</exception>
         public AsyncSyslogSecureTcpSender(string hostname, int port)
             : base(hostname, port, true, MessageTransfer.NonTransparentFraming)
         {

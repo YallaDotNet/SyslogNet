@@ -39,7 +39,7 @@ namespace SyslogNet.Client.Serialization
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="stream">Stream.</param>
-        /// <exception cref="ArgumentNullException">missing message or stream value.</exception>
+        /// <exception cref="ArgumentNullException">Missing message or stream value.</exception>
         public void Serialize(SyslogMessage message, Stream stream)
         {
             if (message == null)

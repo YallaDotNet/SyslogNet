@@ -20,7 +20,7 @@ namespace SyslogNet.Client.Transport
         /// </summary>
         /// <param name="hostname">Host name.</param>
         /// <param name="port">Port number.</param>
-        /// <exception cref="ArgumentNullException">missing hostname value.</exception>
+        /// <exception cref="ArgumentNullException">Missing hostname value.</exception>
         protected AsyncSyslogSenderBase(string hostname, int port)
         {
             if (hostname == null)
