@@ -44,12 +44,6 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
-        /// <exception cref="OperationCanceledException">
-        /// The token has had cancellation requested.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">
-        /// The associated <see cref="CancellationTokenSource"/> has been disposed.
-        /// </exception>
         Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer, CancellationToken cancellationToken);
 
         /// <summary>
@@ -67,12 +61,6 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
-        /// <exception cref="OperationCanceledException">
-        /// The token has had cancellation requested.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">
-        /// The associated <see cref="CancellationTokenSource"/> has been disposed.
-        /// </exception>
         Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer, CancellationToken cancellationToken);
     }
 }
