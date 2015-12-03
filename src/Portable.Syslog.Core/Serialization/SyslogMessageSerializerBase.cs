@@ -4,7 +4,7 @@ using System.Text;
 namespace SyslogNet.Client.Serialization
 {
     /// <summary>
-    /// Base message serializer.
+    /// Base syslog message serializer.
     /// </summary>
     public abstract class SyslogMessageSerializerBase
     {
@@ -14,7 +14,9 @@ namespace SyslogNet.Client.Serialization
         /// Initializes a new instance of the <see cref="SyslogMessageSerializerBase"/> class.
         /// </summary>
         /// <param name="encoding">Encoding.</param>
-        /// <exception cref="ArgumentNullException">Missing encoding value.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="encoding"/> value.
+        /// </exception>
         protected SyslogMessageSerializerBase(Encoding encoding)
         {
             if (encoding == null)
@@ -28,8 +30,14 @@ namespace SyslogNet.Client.Serialization
         /// </summary>
         /// <param name="message">Message.</param>
         /// <returns>Integer priority value.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="message"/> value.
+        /// </exception>
         protected static int CalculatePriorityValue(SyslogMessage message)
         {
+            if (message == null)
+                throw new ArgumentNullException("message");
+
 #pragma warning disable 618
             return CalculatePriorityValue(message.Facility, message.Severity);
 #pragma warning restore 618
@@ -84,7 +92,9 @@ namespace SyslogNet.Client.Serialization
         /// Initializes a new instance of the <see cref="SyslogMessageSerializerBase"/> class.
         /// </summary>
         /// <param name="encoding">Encoding.</param>
-        /// <exception cref="ArgumentNullException">Missing encoding value.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="encoding"/> value.
+        /// </exception>
         protected SyslogMessageSerializerBase(Encoding encoding)
             : base(encoding)
         {

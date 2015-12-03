@@ -5,7 +5,7 @@ using System.Text;
 namespace SyslogNet.Client.Serialization
 {
     /// <summary>
-    /// RFC 3164 message serializer.
+    /// RFC 3164 syslog message serializer.
     /// </summary>
     public class SyslogRfc3164MessageSerializer : SyslogMessageSerializerBase<SyslogRfc3164MessageSerializer>, ISyslogMessageSerializer
     {
@@ -26,7 +26,9 @@ namespace SyslogNet.Client.Serialization
         /// Initializes a new instance of the <see cref="SyslogRfc3164MessageSerializer"/> class.
         /// </summary>
         /// <param name="encoding">Encoding.</param>
-        /// <exception cref="ArgumentNullException">Missing encoding value.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="encoding"/> value.
+        /// </exception>
         public SyslogRfc3164MessageSerializer(Encoding encoding)
             : base(encoding)
         {
@@ -37,7 +39,9 @@ namespace SyslogNet.Client.Serialization
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="stream">Stream.</param>
-        /// <exception cref="ArgumentNullException">Missing message or stream value.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="message"/> or <paramref name="stream"/> value.
+        /// </exception>
         public void Serialize(SyslogMessage message, Stream stream)
         {
             if (message == null)

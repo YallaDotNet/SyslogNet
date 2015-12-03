@@ -6,20 +6,20 @@ using System.Text;
 namespace SyslogNet.Client.Serialization
 {
     /// <summary>
-    /// RFC 5424 message serializer.
+    /// RFC 5424 syslog message serializer.
     /// </summary>
     public class SyslogRfc5424MessageSerializer : SyslogMessageSerializerBase<SyslogRfc5424MessageSerializer>, ISyslogMessageSerializer
     {
         /// <summary>
         /// NILVALUE.
         /// </summary>
-        [Obsolete]
+        [Obsolete("This field will be removed in a future version.")]
         public const string NilValue = "-";
 
         /// <summary>
         /// SD-NAME disallowed characters.
         /// </summary>
-        [Obsolete]
+        [Obsolete("This field will be removed in a future version.")]
         public static readonly HashSet<char> sdNameDisallowedChars = new HashSet<char>() { ' ', '=', ']', '"' };
 
         static SyslogRfc5424MessageSerializer()
@@ -41,7 +41,9 @@ namespace SyslogNet.Client.Serialization
         /// Initializes a new instance of the <see cref="SyslogRfc5424MessageSerializer"/> class.
         /// </summary>
         /// <param name="encoding">Encoding.</param>
-        /// <exception cref="ArgumentNullException">Missing encoding value.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="encoding"/> value.
+        /// </exception>
         public SyslogRfc5424MessageSerializer(Encoding encoding)
             : base(encoding)
         {
@@ -52,7 +54,9 @@ namespace SyslogNet.Client.Serialization
         /// </summary>
         /// <param name="message">Message.</param>
         /// <param name="stream">Stream.</param>
-        /// <exception cref="ArgumentNullException">Missing message or stream value.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="message"/> or <paramref name="stream"/> value.
+        /// </exception>
         public void Serialize(SyslogMessage message, Stream stream)
         {
             if (message == null)
@@ -70,13 +74,13 @@ namespace SyslogNet.Client.Serialization
             var messageBuilder = new StringBuilder();
             messageBuilder.Append("<").Append(priorityValue).Append(">");
             messageBuilder.Append(message.Version);
-#pragma warning disable 612
+#pragma warning disable 612, 618
             messageBuilder.Append(" ").Append(timestamp.FormatSyslogField(NilValue));
             messageBuilder.Append(" ").Append(message.HostName.FormatSyslogAsciiField(NilValue, 255, asciiCharsBuffer));
             messageBuilder.Append(" ").Append(message.AppName.FormatSyslogAsciiField(NilValue, 48, asciiCharsBuffer));
             messageBuilder.Append(" ").Append(message.ProcId.FormatSyslogAsciiField(NilValue, 128, asciiCharsBuffer));
             messageBuilder.Append(" ").Append(message.MsgId.FormatSyslogAsciiField(NilValue, 32, asciiCharsBuffer));
-#pragma warning restore 612
+#pragma warning restore 612, 618
 
             writeStream(stream, Encoding, messageBuilder.ToString());
 
@@ -163,9 +167,9 @@ namespace SyslogNet.Client.Serialization
                 char c = s[i];
                 if (c >= 33 && c <= 126)
                 {
-#pragma warning disable 612
+#pragma warning disable 612, 618
                     if (!sdName || !SyslogRfc5424MessageSerializer.sdNameDisallowedChars.Contains(c))
-#pragma warning restore 612
+#pragma warning restore 612, 618
                     {
                         charBuffer[bufferIndex++] = c;
                     }
@@ -177,9 +181,9 @@ namespace SyslogNet.Client.Serialization
 
         public static string FormatSyslogSdnameField(this string s, char[] charBuffer)
         {
-#pragma warning disable 612
+#pragma warning disable 612, 618
             return FormatSyslogAsciiField(s, SyslogRfc5424MessageSerializer.NilValue, 32, charBuffer, true);
-#pragma warning restore 612
+#pragma warning restore 612, 618
         }
     }
 }
