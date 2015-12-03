@@ -83,6 +83,9 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="message"/> or <paramref name="serializer"/> value.
+        /// </exception>
         /// <exception cref="OperationCanceledException">
         /// The token has had cancellation requested.
         /// </exception>
@@ -102,6 +105,9 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="messages"/> or <paramref name="serializer"/> value.
+        /// </exception>
         /// <exception cref="OperationCanceledException">
         /// The token has had cancellation requested.
         /// </exception>

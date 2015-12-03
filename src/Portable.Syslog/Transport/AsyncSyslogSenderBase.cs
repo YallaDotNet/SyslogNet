@@ -62,6 +62,9 @@ namespace SyslogNet.Client.Transport
         /// <param name="message">Message.</param>
         /// <param name="serializer">Serializer.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="message"/> or <paramref name="serializer"/> value.
+        /// </exception>
         public async Task SendAsync(SyslogMessage message, ISyslogMessageSerializer serializer)
         {
             await SendAsync(message, serializer, CancellationToken.None);
@@ -74,6 +77,9 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="message"/> or <paramref name="serializer"/> value.
+        /// </exception>
         /// <exception cref="OperationCanceledException">
         /// The token has had cancellation requested.
         /// </exception>
@@ -91,6 +97,9 @@ namespace SyslogNet.Client.Transport
         /// <param name="messages">Messages.</param>
         /// <param name="serializer">Serializer.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="messages"/> or <paramref name="serializer"/> value.
+        /// </exception>
         public async Task SendAsync(IEnumerable<SyslogMessage> messages, ISyslogMessageSerializer serializer)
         {
             await SendAsync(messages, serializer, CancellationToken.None);
@@ -103,6 +112,9 @@ namespace SyslogNet.Client.Transport
         /// <param name="serializer">Serializer.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>Asynchronous task.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="messages"/> or <paramref name="serializer"/> value.
+        /// </exception>
         /// <exception cref="OperationCanceledException">
         /// The token has had cancellation requested.
         /// </exception>
