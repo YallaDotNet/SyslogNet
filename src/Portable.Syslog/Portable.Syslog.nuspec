@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
 		<id>Portable.Syslog</id>
-		<version>0.3.1-alpha</version>
+		<version>0.4.0-alpha</version>
 		<title>Portable syslog</title>
 		<authors>Andrew Smith, Dmitry Shechtman</authors>
 		<owners>Dmitry Shechtman</owners>
@@ -32,7 +32,7 @@ Transports:
 * TCP
 * Secure TCP (TLS/SSL)
     </description>
-    <releaseNotes>Improved AsyncSyslogTcpSender API
+    <releaseNotes>Improved APIs
 Improved documentation</releaseNotes>
     <projectUrl>http://yalladotnet.github.io/syslog</projectUrl>
     <iconUrl>http://yalladotnet.github.io/syslog/icons/Help.png</iconUrl>
@@ -41,7 +41,7 @@ Improved documentation</releaseNotes>
     <tags>portable pcl log logger logging syslog rsyslog client library</tags>
     <dependencies>
       <group targetFramework=".NETPortable0.0-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10">
-        <dependency id="Portable.Syslog.Core" version="0.3.1-alpha" />
+        <dependency id="Portable.Syslog.Core" version="0.4.0-alpha" />
         <dependency id="rda.SocketsForPCL" version="1.2.2" />
       </group>
     </dependencies>
