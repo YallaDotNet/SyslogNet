@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0D8A7332-EE18-4364-A822-4E4D9C493F39}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\LICENSE = ..\..\LICENSE
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{A3D406C2-04B3-41C6-8530-EADE79180BDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization", "Serialization\Serialization.csproj", "{B9434AA7-EAC0-4F58-9C81-B0F24778457B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization.Net40", "Serialization.Net40\Serialization.Net40.csproj", "{0C040E79-71EA-4EE3-9294-59C1F5BEB937}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F2E64E50-EC51-40AA-9CFE-3CF9131BD7AE}"
+	ProjectSection(SolutionItems) = preProject
+		..\CommonAssemblyInfo.cs = ..\CommonAssemblyInfo.cs
+		..\SyslogNet.snk = ..\SyslogNet.snk
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portable.Syslog.Core", "Portable.Syslog.Core", "{83E57F34-8A66-4BA8-9546-ED9A337BF053}"
+	ProjectSection(SolutionItems) = preProject
+		Portable.Syslog.Core.nuspec = Portable.Syslog.Core.nuspec
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A3D406C2-04B3-41C6-8530-EADE79180BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3D406C2-04B3-41C6-8530-EADE79180BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3D406C2-04B3-41C6-8530-EADE79180BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3D406C2-04B3-41C6-8530-EADE79180BDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9434AA7-EAC0-4F58-9C81-B0F24778457B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9434AA7-EAC0-4F58-9C81-B0F24778457B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9434AA7-EAC0-4F58-9C81-B0F24778457B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9434AA7-EAC0-4F58-9C81-B0F24778457B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C040E79-71EA-4EE3-9294-59C1F5BEB937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C040E79-71EA-4EE3-9294-59C1F5BEB937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C040E79-71EA-4EE3-9294-59C1F5BEB937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C040E79-71EA-4EE3-9294-59C1F5BEB937}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F2E64E50-EC51-40AA-9CFE-3CF9131BD7AE} = {0D8A7332-EE18-4364-A822-4E4D9C493F39}
+		{83E57F34-8A66-4BA8-9546-ED9A337BF053} = {F2E64E50-EC51-40AA-9CFE-3CF9131BD7AE}
+	EndGlobalSection
+EndGlobal

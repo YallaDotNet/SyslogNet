@@ -21,6 +21,6 @@ using System.Reflection;
 
 #if !TRANSPORT
 #pragma warning disable 1699
-[assembly: AssemblyKeyFile("../SyslogNet.snk")]
+[assembly: AssemblyKeyFile("../../SyslogNet.snk")]
 #pragma warning restore 1699
 #endif

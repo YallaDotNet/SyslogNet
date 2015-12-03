@@ -5,22 +5,11 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TesterApp", "TesterApp\TesterApp.csproj", "{9D7482EB-EA3F-4047-9E79-C80EC8E18FED}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{889FB071-3ADE-4C7F-9079-E4E016FE8B90}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SyslogNet.Client.Tests", "SyslogNet.Client.Tests\SyslogNet.Client.Tests.csproj", "{2D6094E8-8483-4B91-9D5E-BF98B070763F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B2F3BA09-7DED-4468-939F-328466EB4974}"
 	ProjectSection(SolutionItems) = preProject
-		CommonAssemblyInfo.cs = CommonAssemblyInfo.cs
 		LICENSE = LICENSE
-		README.txt = README.txt
-		SyslogNet.snk = SyslogNet.snk
 	EndProjectSection
 EndProject
 Global

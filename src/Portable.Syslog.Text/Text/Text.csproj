@@ -5,53 +5,56 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A3D406C2-04B3-41C6-8530-EADE79180BDD}</ProjectGuid>
+    <ProjectGuid>{0EF08440-F88F-4325-A030-14F3AABC076F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SyslogNet.Client</RootNamespace>
-    <AssemblyName>SyslogNet.Client.Core</AssemblyName>
+    <RootNamespace>SyslogNet.Client.Text</RootNamespace>
+    <AssemblyName>SyslogNet.Client.Text</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;TEXT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SyslogNet.Client.Core.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;TEXT</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SyslogNet.Client.Core.xml</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Facility.cs" />
-    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="ASCIIEncoding.cs" />
+    <Compile Include="DecoderExceptionFallback.cs" />
+    <Compile Include="DecoderExceptionFallbackBuffer.cs" />
+    <Compile Include="DecoderFallback.cs" />
+    <Compile Include="DecoderFallbackBuffer.cs" />
+    <Compile Include="DecoderFallbackException.cs" />
+    <Compile Include="DecoderReplacementFallback.cs" />
+    <Compile Include="DecoderReplacementFallbackBuffer.cs" />
+    <Compile Include="EncoderExceptionFallback.cs" />
+    <Compile Include="EncoderExceptionFallbackBuffer.cs" />
+    <Compile Include="EncoderFallback.cs" />
+    <Compile Include="EncoderFallbackBuffer.cs" />
+    <Compile Include="EncoderFallbackException.cs" />
+    <Compile Include="EncoderReplacementFallback.cs" />
+    <Compile Include="EncoderReplacementFallbackBuffer.cs" />
+    <Compile Include="PortableEncoding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\ISyslogMessageSerializer.cs" />
-    <Compile Include="Serialization\NamespaceDoc.cs" />
-    <Compile Include="Severity.cs" />
-    <Compile Include="StructuredDataElement.cs" />
-    <Compile Include="SyslogMessage.cs" />
-    <Compile Include="Transport\IAsyncSyslogMessageSender.cs" />
-    <Compile Include="Transport\ISyslogMessageSender.cs" />
-    <Compile Include="Transport\MessageTransfer.cs" />
-    <Compile Include="Transport\NamespaceDoc.cs" />
-    <Compile Include="Transport\SyslogTransportException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,23 +2,27 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0C040E79-71EA-4EE3-9294-59C1F5BEB937}</ProjectGuid>
+    <ProjectGuid>{B9434AA7-EAC0-4F58-9C81-B0F24778457B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SyslogNet.Client.Serialization</RootNamespace>
     <AssemblyName>SyslogNet.Client.Serialization</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\SyslogNet.Client.Serialization.xml</DocumentationFile>
@@ -27,50 +31,38 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\SyslogNet.Client.Serialization.xml</DocumentationFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\CommonAssemblyInfo.cs">
-      <Link>Properties\CommonAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Serialization\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Serialization\SyslogLocalMessageSerializer.cs">
-      <Link>SyslogLocalMessageSerializer.cs</Link>
-    </Compile>
-    <Compile Include="..\Serialization\SyslogMessageSerializerBase.cs">
-      <Link>SyslogMessageSerializerBase.cs</Link>
-    </Compile>
-    <Compile Include="..\Serialization\SyslogMessageSerializerExtensions.cs">
-      <Link>SyslogMessageSerializerExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\Serialization\SyslogRfc3164MessageSerializer.cs">
-      <Link>SyslogRfc3164MessageSerializer.cs</Link>
-    </Compile>
-    <Compile Include="..\Serialization\SyslogRfc5424MessageSerializer.cs">
-      <Link>SyslogRfc5424MessageSerializer.cs</Link>
-    </Compile>
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="..\..\CommonAssemblyInfo.cs">
+      <Link>Properties\CommonAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyslogLocalMessageSerializer.cs" />
+    <Compile Include="SyslogMessageSerializerBase.cs" />
+    <Compile Include="SyslogMessageSerializerExtensions.cs" />
+    <Compile Include="SyslogRfc3164MessageSerializer.cs" />
+    <Compile Include="SyslogRfc5424MessageSerializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SyslogNet.Client.Text, Version=0.3.0.0, Culture=neutral, PublicKeyToken=5ae7acfde823ed00, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.Syslog.Text.0.3.0-alpha\lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10\SyslogNet.Client.Text.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

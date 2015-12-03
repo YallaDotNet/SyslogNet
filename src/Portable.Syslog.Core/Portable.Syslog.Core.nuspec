@@ -2,19 +2,20 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
 		<id>Portable.Syslog.Core</id>
-		<version>0.3.0-alpha</version>
+		<version>0.3.1-alpha</version>
 		<title>Portable syslog Core</title>
 		<authors>Andrew Smith</authors>
 		<owners>Dmitry Shechtman</owners>
     <description>Portable syslog Core.</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>TODO</releaseNotes>
     <projectUrl>http://yalladotnet.github.io/syslog</projectUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <iconUrl>http://yalladotnet.github.io/syslog/icons/Help.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<copyright>Copyright © 2013 Andrew Smith</copyright>
     <tags></tags>
     <dependencies>
       <group targetFramework=".NETPortable0.0-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10">
-        <dependency id="Portable.Syslog.Text" version="0.3.0-alpha" />
+        <dependency id="Portable.Syslog.Text" version="0.3.1-alpha" />
       </group>
       <group targetFramework=".NETFramework4.0-Client" />
     </dependencies>
@@ -28,6 +29,6 @@
     <file src="Core\bin\Release\SyslogNet.Client.Core.xml" target="lib\net40-client" />
     <file src="Serialization.Net40\bin\Release\SyslogNet.Client.Serialization.dll" target="lib\net40-client" />
     <file src="Serialization.Net40\bin\Release\SyslogNet.Client.Serialization.xml" target="lib\net40-client" />
-    <file src="LICENSE" />
+    <file src="..\..\LICENSE" />
   </files>
 </package>
