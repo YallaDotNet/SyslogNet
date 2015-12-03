@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SyslogNet.Client.Core, Version=0.3.0.0, Culture=neutral, PublicKeyToken=5ae7acfde823ed00, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.Syslog.Core.0.3.0-alpha\lib\net40-client\SyslogNet.Client.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SyslogNet.Client.Serialization, Version=0.3.0.0, Culture=neutral, PublicKeyToken=5ae7acfde823ed00, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.Syslog.Core.0.3.0-alpha\lib\net40-client\SyslogNet.Client.Serialization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,14 +67,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{a3d406c2-04b3-41c6-8530-eade79180bdd}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Serialization.Net40\Serialization.Net40.csproj">
-      <Project>{0c040e79-71ea-4ee3-9294-59c1f5beb937}</Project>
-      <Name>Serialization.Net40</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Transport\Transport.csproj">
       <Project>{f94b72cd-da67-436e-9244-fa79df140e0a}</Project>
       <Name>Transport</Name>
