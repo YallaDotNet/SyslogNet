@@ -13,6 +13,7 @@ namespace SyslogNet.Client
         /// </summary>
         /// RFC 5424 specifies that you must provide a private enterprise number.
         /// If none specified, the example number reserved for documentation will be used (see RFC).
+        [Obsolete]
         public const string DefaultPrivateEnterpriseNumber = "32473";
 
         private readonly string sdId;
@@ -30,7 +31,9 @@ namespace SyslogNet.Client
             if (parameters == null)
                 throw new ArgumentNullException("parameters");
 
+#pragma warning disable 612
             this.sdId = sdId.Contains("@") ? sdId : sdId + "@" + DefaultPrivateEnterpriseNumber;
+#pragma warning restore 612
             this.parameters = parameters;
         }
 

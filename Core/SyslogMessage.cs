@@ -21,13 +21,14 @@ namespace SyslogNet.Client
         /// <summary>
         /// Default message facility.
         /// </summary>
+        [Obsolete]
         public static Facility DefaultFacility = Facility.UserLevelMessages;
 
         /// <summary>
         /// Default message severity.
         /// </summary>
+        [Obsolete]
         public static Severity DefaultSeverity = Severity.Informational;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SyslogMessage"/> class
@@ -40,7 +41,9 @@ namespace SyslogNet.Client
             Severity severity,
             string appName,
             string message)
+#pragma warning disable 612
             : this(DefaultFacility, severity, appName, message)
+#pragma warning restore 612
         {
         }
 
