@@ -3,12 +3,14 @@
 Portable syslog
 ===============
 
+
 Introduction
 ------------
 
 Portable syslog client for .NET.
 
 This is a fork of [SyslogNet](https://github.com/emertechie/SyslogNet), ported and documented as part of [YALLA.NET](http://YallaDotNet.github.io).
+
 
 Platforms
 ---------
@@ -22,12 +24,14 @@ Platforms
 * Xamarin.Mac
 * Portable Class Libraries
 
+
 Serializers
 -----------
 
 * RFC 3164
 * RFC 5424
 * Local (Linux/BSD/OSX)
+
 
 Transports
 ----------
@@ -36,16 +40,12 @@ Transports
 * TCP
 * Secure TCP (TLS/SSL)
 
-Installation
-------------
 
-Install the [NuGet package](https://nuget.org/packages/portable.syslog):
+Getting Started
+---------------
 
-```PowerShell
-Install-Package portable.syslog
-```
+The latest documentation is available at <http://yalladotnet.github.io/syslog>.
 
-**Note:** The package must be installed in the main project in order for the underlying network library to resolve to the specific platform version.
 
 Notice
 ------
