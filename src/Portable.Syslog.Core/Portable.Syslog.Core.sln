@@ -23,6 +23,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portable.Syslog.Core", "Portable.Syslog.Core", "{83E57F34-8A66-4BA8-9546-ED9A337BF053}"
 	ProjectSection(SolutionItems) = preProject
 		Portable.Syslog.Core.nuspec = Portable.Syslog.Core.nuspec
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
