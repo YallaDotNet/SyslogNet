@@ -24,7 +24,10 @@ namespace SyslogNet.Client
         /// </summary>
         /// <param name="sdId">Structured data identifier.</param>
         /// <param name="parameters">Structured data parameters.</param>
-        public StructuredDataElement(string sdId, Dictionary<string, string> parameters)
+        /// <exception cref="ArgumentNullException">
+        /// Missing <paramref name="sdId"/> or <paramref name="parameters"/> value.
+        /// </exception>
+        public StructuredDataElement(string sdId, IDictionary<string, string> parameters)
         {
             if (sdId == null)
                 throw new ArgumentNullException("sdId");
@@ -34,7 +37,7 @@ namespace SyslogNet.Client
 #pragma warning disable 612
             this.sdId = sdId.Contains("@") ? sdId : sdId + "@" + DefaultPrivateEnterpriseNumber;
 #pragma warning restore 612
-            this.parameters = parameters;
+            this.parameters = new Dictionary<string, string>(parameters);
         }
 
         /// <summary>
