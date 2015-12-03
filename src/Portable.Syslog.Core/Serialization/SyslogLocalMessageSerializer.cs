@@ -16,7 +16,15 @@ namespace SyslogNet.Client.Serialization
         /// <summary>
         /// Initializes a new instance of the <see cref="SyslogLocalMessageSerializer"/> class.
         /// </summary>
-        /// <remarks>The default behaviour is to produce no BOM in local syslog messages.</remarks>
+        /// <remarks>
+        /// <para>
+        /// <strong>This constructor is obsolete and will be removed in a future version.</strong>
+        /// Use <see cref="SyslogMessageSerializerBase{SyslogLocalMessageSerializer}.Default"/> instead.
+        /// </para>
+        /// <para>
+        /// The default behaviour is to produce no BOM in local syslog messages.
+        /// </para>
+        /// </remarks>
         [Obsolete("Use SyslogLocalMessageSerializer.Default instead.")]
         public SyslogLocalMessageSerializer()
             : this(false)

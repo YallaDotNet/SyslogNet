@@ -21,12 +21,14 @@ namespace SyslogNet.Client
         /// <summary>
         /// Default message facility.
         /// </summary>
+        /// <remarks><strong>This field is obsolete and will be removed in a future version.</strong></remarks>
         [Obsolete("This field will be removed in a future version.")]
         public static Facility DefaultFacility = Facility.UserLevelMessages;
 
         /// <summary>
         /// Default message severity.
         /// </summary>
+        /// <remarks><strong>This field is obsolete and will be removed in a future version.</strong></remarks>
         [Obsolete("This field will be removed in a future version.")]
         public static Severity DefaultSeverity = Severity.Informational;
 
@@ -57,6 +59,10 @@ namespace SyslogNet.Client
         /// <param name="severity">Message severity.</param>
         /// <param name="appName">Application name.</param>
         /// <param name="message">Message text.</param>
+        /// <remarks>
+        /// <strong>This constructor is obsolete and will be removed in a future version.</strong>
+        /// Use <see cref="SyslogMessage.Create"/> instead.
+        /// </remarks>
         [Obsolete("Use SyslogMessage.Create() instead.")]
         public SyslogMessage(
             Severity severity,
@@ -76,6 +82,10 @@ namespace SyslogNet.Client
         /// <param name="severity">Message severity.</param>
         /// <param name="appName">Application name.</param>
         /// <param name="message">Message text.</param>
+        /// <remarks>
+        /// <strong>This constructor is obsolete and will be removed in a future version.</strong>
+        /// Use <see cref="SyslogMessage.Create"/> instead.
+        /// </remarks>
         [Obsolete("Use SyslogMessage.Create() instead.")]
         public SyslogMessage(
             Facility facility,

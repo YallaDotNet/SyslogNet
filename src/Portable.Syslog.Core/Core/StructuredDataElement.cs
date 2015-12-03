@@ -15,6 +15,7 @@ namespace SyslogNet.Client
         /// </summary>
         /// RFC 5424 specifies that you must provide a private enterprise number.
         /// If none specified, the example number reserved for documentation will be used (see RFC).
+        /// <remarks><strong>This field is obsolete and will be removed in a future version.</strong></remarks>
         [Obsolete("This field will be removed in a future version.")]
         public const string DefaultPrivateEnterpriseNumber = "32473";
 

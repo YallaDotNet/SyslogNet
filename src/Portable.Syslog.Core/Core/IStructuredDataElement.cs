@@ -6,6 +6,7 @@ namespace SyslogNet.Client
     /// <summary>
     /// RFC 5424 structured data element.
     /// </summary>
+    /// <remarks><strong>This interface is obsolete and will be removed in a future version.</strong></remarks>
     [Obsolete("This interface will be removed in a future version.")]
     public interface IStructuredDataElement
     {

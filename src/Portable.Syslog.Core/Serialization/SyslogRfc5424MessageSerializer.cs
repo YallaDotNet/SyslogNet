@@ -13,12 +13,18 @@ namespace SyslogNet.Client.Serialization
         /// <summary>
         /// NILVALUE.
         /// </summary>
+        /// <remarks>
+        /// <strong>This field is obsolete and will be removed in a future version.</strong>
+        /// </remarks>
         [Obsolete("This field will be removed in a future version.")]
         public const string NilValue = "-";
 
         /// <summary>
         /// SD-NAME disallowed characters.
         /// </summary>
+        /// <remarks>
+        /// <strong>This field is obsolete and will be removed in a future version.</strong>
+        /// </remarks>
         [Obsolete("This field will be removed in a future version.")]
         public static readonly HashSet<char> sdNameDisallowedChars = new HashSet<char>() { ' ', '=', ']', '"' };
 
@@ -31,6 +37,10 @@ namespace SyslogNet.Client.Serialization
         /// <summary>
         /// Initializes a new instance of the <see cref="SyslogRfc5424MessageSerializer"/> class.
         /// </summary>
+        /// <remarks>
+        /// <strong>This constructor is obsolete and will be removed in a future version.</strong>
+        /// Use <see cref="SyslogMessageSerializerBase{SyslogRfc5424MessageSerializer}.Default"/> instead.
+        /// </remarks>
         [Obsolete("Use SyslogRfc5424MessageSerializer.Default instead.")]
         public SyslogRfc5424MessageSerializer()
             : this(new ASCIIEncoding())

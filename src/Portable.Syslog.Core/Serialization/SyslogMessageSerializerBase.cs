@@ -49,6 +49,10 @@ namespace SyslogNet.Client.Serialization
         /// <param name="facility">Message facility.</param>
         /// <param name="severity">Message severity.</param>
         /// <returns>Integer priority value.</returns>
+        /// <remarks>
+        /// <strong>This method is obsolete and will be removed in a future version.</strong>
+        /// Use <see cref="CalculatePriorityValue(SyslogMessage)"/> instead.
+        /// </remarks>
         [Obsolete("Use CalculatePriorityValue(SyslogMessage) instead.")]
         protected static int CalculatePriorityValue(Facility facility, Severity severity)
         {
@@ -66,7 +70,7 @@ namespace SyslogNet.Client.Serialization
     }
 
     /// <summary>
-    /// Base message serializer.
+    /// Base syslog message serializer.
     /// </summary>
     /// <typeparam name="T">Type of serializer.</typeparam>
     public abstract class SyslogMessageSerializerBase<T> : SyslogMessageSerializerBase

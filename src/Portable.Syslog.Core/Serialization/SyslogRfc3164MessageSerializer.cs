@@ -16,6 +16,10 @@ namespace SyslogNet.Client.Serialization
         /// <summary>
         /// Initializes a new instance of the <see cref="SyslogRfc3164MessageSerializer"/> class.
         /// </summary>
+        /// <remarks>
+        /// <strong>This constructor is obsolete and will be removed in a future version.</strong>
+        /// Use <see cref="SyslogMessageSerializerBase{SyslogRfc3164MessageSerializer}.Default"/> instead.
+        /// </remarks>
         [Obsolete("Use SyslogRfc3164MessageSerializer.Default instead.")]
         public SyslogRfc3164MessageSerializer()
             : this(new ASCIIEncoding())
