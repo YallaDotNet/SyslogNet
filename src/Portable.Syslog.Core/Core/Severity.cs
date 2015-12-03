@@ -1,7 +1,7 @@
 ﻿namespace SyslogNet.Client
 {
     /// <summary>
-    /// Message severity.
+    /// sysolg message severity.
     /// </summary>
 	public enum Severity
 	{

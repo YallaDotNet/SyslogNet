@@ -4,7 +4,7 @@ using System.Text;
 namespace SyslogNet.Client.Serialization
 {
     /// <summary>
-    /// Message serializer.
+    /// syslog message serializer.
     /// </summary>
     public interface ISyslogMessageSerializer
     {

@@ -1,7 +1,7 @@
 ﻿namespace SyslogNet.Client
 {
     /// <summary>
-    /// Message facility.
+    /// syslog message facility.
     /// </summary>
     public enum Facility
     {

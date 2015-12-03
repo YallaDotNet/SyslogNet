@@ -3,7 +3,7 @@
 namespace SyslogNet.Client.Transport
 {
     /// <summary>
-    /// Transport exception.
+    /// syslog transport exception.
     /// </summary>
     public class SyslogTransportException : Exception
     {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SyslogNet.Client.Transport
 {
     /// <summary>
-    /// Asynchronous message sender.
+    /// Asynchronous syslog message sender.
     /// </summary>
     public interface IAsyncSyslogMessageSender : IDisposable
     {

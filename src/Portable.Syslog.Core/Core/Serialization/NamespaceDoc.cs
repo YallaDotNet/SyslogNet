@@ -1,7 +1,7 @@
 ﻿namespace SyslogNet.Client.Serialization
 {
     /// <summary>
-    /// Serialization types.
+    /// syslog serialization types.
     /// </summary>
     [System.Runtime.CompilerServices.CompilerGenerated]
     sealed class NamespaceDoc

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace SyslogNet.Client
 {
     /// <summary>
-    /// Message.
+    /// syslog message.
     /// </summary>
     public class SyslogMessage
     {

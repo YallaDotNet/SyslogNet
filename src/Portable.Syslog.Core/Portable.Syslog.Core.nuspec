@@ -7,7 +7,8 @@
 		<authors>Andrew Smith</authors>
 		<owners>Dmitry Shechtman</owners>
     <description>Portable syslog Core.</description>
-    <releaseNotes>Improved StructuredDataElement API</releaseNotes>
+    <releaseNotes>Improved StructuredDataElement API
+Improved documentation</releaseNotes>
     <projectUrl>http://yalladotnet.github.io/syslog</projectUrl>
     <iconUrl>http://yalladotnet.github.io/syslog/icons/Help.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

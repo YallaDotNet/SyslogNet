@@ -5,7 +5,7 @@ using SyslogNet.Client.Serialization;
 namespace SyslogNet.Client.Transport
 {
     /// <summary>
-    /// Message sender.
+    /// syslog message sender.
     /// </summary>
 	public interface ISyslogMessageSender : IDisposable
 	{

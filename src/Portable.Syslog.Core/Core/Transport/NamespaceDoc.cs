@@ -1,7 +1,7 @@
 ﻿namespace SyslogNet.Client.Transport
 {
     /// <summary>
-    /// Transport types.
+    /// syslog transport types.
     /// </summary>
     [System.Runtime.CompilerServices.CompilerGenerated]
     sealed class NamespaceDoc
