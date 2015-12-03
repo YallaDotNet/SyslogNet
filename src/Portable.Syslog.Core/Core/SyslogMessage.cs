@@ -31,12 +31,33 @@ namespace SyslogNet.Client
         public static Severity DefaultSeverity = Severity.Informational;
 
         /// <summary>
+        /// Creates an instance of the <see cref="SyslogMessage"/> class
+        /// for sending a local syslog message.
+        /// </summary>
+        /// <param name="appName">Application name.</param>
+        /// <param name="message">Message text.</param>
+        /// <param name="facility">Message facility.</param>
+        /// <param name="severity">Message severity.</param>
+        /// <returns>An instance of <see cref="SyslogMessage"/>.</returns>
+        public static SyslogMessage Create(
+            string appName,
+            string message,
+            Severity severity = Severity.Informational,
+            Facility facility = Facility.UserLevelMessages)
+        {
+#pragma warning disable 612, 618
+            return new SyslogMessage(appName: appName, message: message, severity: severity, facility: facility);
+#pragma warning restore 612, 618
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SyslogMessage"/> class
         /// for sending a local syslog message with the default facility.
         /// </summary>
         /// <param name="severity">Message severity.</param>
         /// <param name="appName">Application name.</param>
         /// <param name="message">Message text.</param>
+        [Obsolete("Use SyslogMessage.Create() instead.")]
         public SyslogMessage(
             Severity severity,
             string appName,
@@ -55,6 +76,7 @@ namespace SyslogNet.Client
         /// <param name="severity">Message severity.</param>
         /// <param name="appName">Application name.</param>
         /// <param name="message">Message text.</param>
+        [Obsolete("Use SyslogMessage.Create() instead.")]
         public SyslogMessage(
             Facility facility,
             Severity severity,
@@ -87,16 +109,15 @@ namespace SyslogNet.Client
             string hostName,
             string appName,
             string message)
+#pragma warning disable 612, 618
+            : this(facility, severity, appName, message)
+#pragma warning restore 612, 618
         {
             if (hostName == null)
                 throw new ArgumentNullException("hostName");
 
             this.dateTimeOffset = dateTimeOffset;
-            this.facility = facility;
-            this.severity = severity;
             this.hostName = hostName;
-            this.appName = appName;
-            this.message = message;
         }
 
         /// <summary>
