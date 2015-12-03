@@ -32,7 +32,8 @@ Transports:
 * TCP
 * Secure TCP (TLS/SSL)
     </description>
-    <releaseNotes>TODO</releaseNotes>
+    <releaseNotes>Improved AsyncSyslogTcpSender API
+Improved documentation</releaseNotes>
     <projectUrl>http://yalladotnet.github.io/syslog</projectUrl>
     <iconUrl>http://yalladotnet.github.io/syslog/icons/Help.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

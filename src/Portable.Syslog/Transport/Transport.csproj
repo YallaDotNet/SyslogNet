@@ -62,10 +62,13 @@
     <Compile Include="..\..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="AsyncSyslogSecureTcpSender.cs" />
+    <Compile Include="AsyncSyslogFramingTcpSender.cs" />
+    <Compile Include="AsyncSyslogTcpSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AsyncSyslogDelegateSender.cs" />
     <Compile Include="AsyncSyslogSenderBase.cs" />
-    <Compile Include="AsyncSyslogTcpSender.cs" />
+    <Compile Include="AsyncSyslogTcpSenderBase.cs" />
     <Compile Include="AsyncSyslogUdpSender.cs" />
   </ItemGroup>
   <ItemGroup>

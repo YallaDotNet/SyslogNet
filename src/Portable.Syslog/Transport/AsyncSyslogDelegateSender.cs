@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SyslogNet.Client.Transport
 {
     /// <summary>
-    /// Asynchronous delegate sender.
+    /// Asynchronous syslog delegate sender.
     /// </summary>
     public class AsyncSyslogDelegateSender : IAsyncSyslogMessageSender
     {
@@ -17,6 +17,7 @@ namespace SyslogNet.Client.Transport
         /// Initializes a new instance of the <see cref="AsyncSyslogDelegateSender"/> class.
         /// </summary>
         /// <param name="innerSender">Inner sender.</param>
+        /// <exception cref="ArgumentNullException">Missing <paramref name="innerSender"/> value.</exception>
         public AsyncSyslogDelegateSender(ISyslogMessageSender innerSender)
         {
             if (innerSender == null)
@@ -28,6 +29,7 @@ namespace SyslogNet.Client.Transport
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The inner sender has been disposed.</exception>
         public void Dispose()
         {
             innerSender.Dispose();

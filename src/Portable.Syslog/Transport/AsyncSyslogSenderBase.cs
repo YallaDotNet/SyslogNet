@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SyslogNet.Client.Transport
 {
     /// <summary>
-    /// Base asynchronous sender.
+    /// Base asynchronous syslog sender.
     /// </summary>
     public abstract class AsyncSyslogSenderBase : IAsyncSyslogMessageSender
     {
@@ -20,7 +20,7 @@ namespace SyslogNet.Client.Transport
         /// </summary>
         /// <param name="hostname">Host name.</param>
         /// <param name="port">Port number.</param>
-        /// <exception cref="ArgumentNullException">Missing hostname value.</exception>
+        /// <exception cref="ArgumentNullException">Missing <paramref name="hostname"/> value.</exception>
         protected AsyncSyslogSenderBase(string hostname, int port)
         {
             if (hostname == null)

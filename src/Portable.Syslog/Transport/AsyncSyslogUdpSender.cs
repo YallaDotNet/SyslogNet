@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SyslogNet.Client.Transport
 {
     /// <summary>
-    /// Asynchronous UDP sender.
+    /// Asynchronous syslog UDP sender.
     /// </summary>
     public sealed class AsyncSyslogUdpSender : AsyncSyslogSenderBase
     {
@@ -18,7 +18,7 @@ namespace SyslogNet.Client.Transport
         /// </summary>
         /// <param name="hostname">Host name.</param>
         /// <param name="port">Port number.</param>
-        /// <exception cref="ArgumentNullException">Missing hostname value.</exception>
+        /// <exception cref="ArgumentNullException">Missing <paramref name="hostname"/> value.</exception>
         public AsyncSyslogUdpSender(string hostname, int port)
             : base(hostname, port)
         {
@@ -28,6 +28,7 @@ namespace SyslogNet.Client.Transport
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The sender has been disposed.</exception>
         public override void Dispose()
         {
             udpClient.Dispose();
