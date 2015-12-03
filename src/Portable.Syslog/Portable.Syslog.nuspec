@@ -51,6 +51,6 @@ Improved documentation</releaseNotes>
     <file src="Transport\bin\Release\SyslogNet.Client.Transport.xml" target="lib\portable-net45+win+wpa81+wp80+MonoAndroid10+MonoTouch10" />
     <file src="README.txt" />
     <file src="..\..\LICENSE" />
-    <file src="..\..\..\YallaDotNet.github.io\syslog\syslog.chm" target="doc\" />
+    <file src="..\..\..\YallaDotNet.github.io\syslog\Portable.Syslog.chm" target="doc\" />
   </files>
 </package>
