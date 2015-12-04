@@ -45,7 +45,8 @@ namespace SyslogNet.Client.Transport
             // Not needed; glibc syslog() is effectively "connectionless"
         }
 
-        void ISyslogMessageSender.Reconnect()
+        [Obsolete]
+        public void Reconnect()
         {
             // Not needed; glibc syslog() is effectively "connectionless"
         }

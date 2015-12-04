@@ -35,7 +35,12 @@ namespace SyslogNet.Client.Transport
             trailer = 10; // LF
         }
 
-        public void Connect()
+        void ISyslogMessageSender.Connect()
+        {
+            Connect();
+        }
+
+        protected void Connect()
         {
             try
             {

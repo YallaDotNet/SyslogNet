@@ -33,7 +33,8 @@ namespace SyslogNet.Client.Transport
 
         void ISyslogMessageSender.Disconnect() { /* UDP is connectionless */ }
 
-        void ISyslogMessageSender.Reconnect() { /* UDP is connectionless */ }
+        [Obsolete]
+        public void Reconnect() { /* UDP is connectionless */ }
 
         public void Dispose()
         {
