@@ -31,7 +31,7 @@ namespace SyslogNet.Client.Tests.Serialization
             string appName = null,
             string message = null)
         {
-            return new SyslogMessage(facility, severity, appName, message);
+            return SyslogMessage.Create(appName, message, severity, facility);
         }
     }
 }
