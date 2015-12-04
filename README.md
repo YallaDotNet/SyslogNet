@@ -9,7 +9,7 @@ Introduction
 
 Portable syslog client for .NET.
 
-This is a fork of [SyslogNet](https://github.com/emertechie/SyslogNet), ported and documented as part of [YALLA.NET](http://YallaDotNet.github.io).
+This is a fork of [SyslogNet](https://github.com/emertechie/SyslogNet), ported and documented as part of [YALLA.NET](http://YallaDotNet.github.io/Yalla).
 
 
 Platforms
