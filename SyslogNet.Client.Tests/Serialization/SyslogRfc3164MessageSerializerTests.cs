@@ -78,7 +78,7 @@ namespace SyslogNet.Client.Tests.Serialization
 			Facility facility,
 			Severity severity,
 			DateTimeOffset? dateTimeOffset = null,
-			string hostName = null,
+			string hostName = "",
 			string appName = null,
 			string message = null)
 		{
