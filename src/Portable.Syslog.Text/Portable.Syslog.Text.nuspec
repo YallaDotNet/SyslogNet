@@ -2,13 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
 		<id>Portable.Syslog.Text</id>
-		<version>0.3.1-alpha</version>
+		<version>0.3.2-alpha</version>
 		<title>Portable syslog ASCII encoding</title>
 		<authors>Xamarin Inc.</authors>
 		<owners>Dmitry Shechtman</owners>
     <description>Portable syslog ASCII encoding.</description>
-    <releaseNotes>Added icon</releaseNotes>
+    <releaseNotes>Added license</releaseNotes>
     <projectUrl>http://yalladotnet.github.io/syslog</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/YallaDotNet/syslog/master/LICENSE</licenseUrl>
     <iconUrl>http://yalladotnet.github.io/syslog/icons/Help.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<copyright>Copyright © 2014-2015 Xamarin Inc.</copyright>
