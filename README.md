@@ -1,8 +1,13 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/2iwx9qgi9w48iibi?svg=true)](https://ci.appveyor.com/project/dmitry-shechtman/syslog)
+![syslog](http://yalladotnet.github.io/syslog/icons/Help.png)
 
-![syslog](http://yalladotnet.github.io/syslog/icons/Help.png) Portable syslog
+Portable syslog
 ===
 
+Package|Build|NuGet
+-------|-----|-----
+core|[![Build](https://img.shields.io/appveyor/ci/dmitry-shechtman/syslog-sd7u3.svg)](https://ci.appveyor.com/project/dmitry-shechtman/syslog-sd7u3)|[![NuGet](https://img.shields.io/nuget/v/portable.syslog.core.svg)](https://www.nuget.org/packages/Portable.Syslog.Core)
+text|[![Build](https://img.shields.io/appveyor/ci/dmitry-shechtman/syslog-h8j1f.svg)](https://ci.appveyor.com/project/dmitry-shechtman/syslog-h8j1f)|[![NuGet](https://img.shields.io/nuget/v/portable.syslog.text.svg)](https://www.nuget.org/packages/Portable.Syslog.Text)
+main|[![Build](https://img.shields.io/appveyor/ci/dmitry-shechtman/syslog.svg)](https://ci.appveyor.com/project/dmitry-shechtman/syslog)|[![NuGet](https://img.shields.io/nuget/v/portable.syslog.svg)](https://www.nuget.org/packages/Portable.Syslog)
 
 Introduction
 ------------
